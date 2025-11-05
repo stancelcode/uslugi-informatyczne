@@ -1,0 +1,379 @@
+/* ==========================
+   KOLORY I ZMIENNE
+========================== */
+:root {
+  --accent-color: #0078b7;
+  --accent-hover: #005d8c;
+  --bg-color: #f6f8fa;
+  --text-color: #222;
+  --dark-bg: #1e1f24;
+  --dark-section: #2a2c31;
+  --dark-text: #ddd;
+  --transition: 0.3s ease;
+}
+
+/* ==========================
+   OGÓLNY STYL
+========================== */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  margin: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ==========================
+   TRYB CIEMNY
+========================== */
+body.dark {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+body.dark section,
+body.dark .feature-box,
+body.dark .project-card {
+  background: var(--dark-section);
+  color: var(--dark-text);
+}
+body.dark h2 { color: var(--accent-color); }
+body.dark #darkModeToggle { background: var(--dark-section); color: #fff; }
+
+/* ==========================
+   HERO / SLIDER
+========================== */
+header.hero {
+  position: relative;
+  height: 75vh;
+  overflow: hidden;
+}
+.swiper { width: 100%; height: 100%; }
+.swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+  pointer-events: none;
+}
+.hero-content nav { pointer-events: auto; }
+
+.hero-inner h1 { font-size: 2.6em; margin-bottom: 10px; }
+.hero-inner h2 { font-weight: 400; margin-bottom: 20px; }
+
+.hero-content nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.hero-content nav a:hover { color: var(--accent-color); }
+
+/* ==========================
+   STRZAŁKI SLIDERA
+========================== */
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff !important;
+  z-index: 50 !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  transform: translateY(-50%);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.swiper-button-prev { left: 25px; }
+.swiper-button-next { right: 25px; }
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: rgba(0, 120, 183, 0.85);
+  transform: translateY(-50%) scale(1.1);
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+/* ==========================
+   TREŚĆ STRONY
+========================== */
+main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+section h2 { text-align: center; color: var(--accent-color); margin-bottom: 10px; }
+
+/* ==========================
+   GRIDY I KAFELKI
+========================== */
+.features-grid, .projects-grid, .team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.feature-box, .project-card, .member {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.feature-box:hover, .project-card:hover, .member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+.project-card img, .member img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.feature-box h3 { color: var(--accent-color); }
+
+/* ==========================
+   CTA
+========================== */
+#cta {
+  text-align: center;
+  background: var(--accent-color);
+  color: #fff;
+  padding: 60px 20px;
+  border-radius: 10px;
+  margin-top: 60px;
+}
+.cta-btn {
+  display: inline-block;
+  background: #fff;
+  color: var(--accent-color);
+  padding: 12px 25px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: var(--transition);
+}
+.cta-btn:hover { background: var(--accent-hover); color: #fff; }
+
+/* ==========================
+   FORMULARZ KONTAKTOWY
+========================== */
+.contact-section {
+  padding: 80px 0;
+  background: #f7f9fc;
+  text-align: center;
+}
+body.dark .contact-section { background: var(--dark-section); }
+
+.contact-form {
+  max-width: 550px;
+  margin: 30px auto 0;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+body.dark .contact-form { background: #2b2e33; }
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  transition: border var(--transition), box-shadow var(--transition);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 0 6px rgba(0,120,183,0.3);
+  outline: none;
+}
+
+.captcha-box { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+.captcha-img { border: 1px solid #ddd; height: 40px; border-radius: 6px; }
+
+.reload-btn, .btn-send {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.reload-btn:hover, .btn-send:hover { background: var(--accent-hover); }
+.btn-send { padding: 14px; font-size: 1em; border-radius: 8px; }
+
+/* ==========================
+   TOAST
+========================== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #4CAF50;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 9999;
+}
+.toast.show { opacity: 1; }
+.toast.error { background: #e74c3c; }
+
+/* ==========================
+   SYSTEMOWE PRZYCISKI
+========================== */
+#darkModeToggle, #backToTop {
+  position: fixed;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: all var(--transition);
+}
+#darkModeToggle {
+  top: 20px; right: 20px;
+  background: var(--accent-color);
+  width: 42px; height: 42px; font-size: 1.2em; z-index: 2000;
+}
+#darkModeToggle:hover { background: var(--accent-hover); }
+
+#backToTop {
+  bottom: 30px; right: 30px;
+  width: 48px; height: 48px; font-size: 22px;
+  background: var(--accent-color);
+  display: none; z-index: 9999;
+}
+#backToTop:hover { transform: scale(1.1); background: var(--accent-hover); }
+
+/* ==========================
+   SEKCJA TECHNOLOGII
+========================== */
+#technologies {
+  text-align: center;
+  padding: 70px 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  margin-top: 60px;
+}
+body.dark #technologies { background: var(--dark-section); }
+.tech-desc { max-width: 700px; margin: 0 auto 40px; color: #555; font-size: 1.05em; }
+body.dark .tech-desc { color: var(--dark-text); }
+
+.tech-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+.tech-logos img {
+  height: 55px;
+  opacity: 0.85;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  filter: grayscale(20%);
+}
+.tech-logos img:hover {
+  opacity: 1; transform: scale(1.15); filter: none;
+}
+
+/* ==========================
+   ZESPÓŁ – jasny tekst w dark mode
+========================== */
+body.dark .member {
+  background: #fff !important;
+  color: #222 !important;
+}
+body.dark .member h3, body.dark .member p { color: #222 !important; }
+
+/* ==========================
+   STOPKA
+========================== */
+footer {
+  text-align: center;
+  background: #111;
+  color: #fff;
+  padding: 15px;
+  margin-top: 60px;
+  font-size: 0.9em;
+}
+
+/* ==========================
+   SEKCJA ZESPÓŁ – 2 kolumny
+========================== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================
+   SEKCJA ZESPÓŁ – WYŚRODKOWANIE TEKSTU
+========================== */
+.member {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform var(--transition), box-shadow var(--transition);
+  text-align: center; /* 🔹 wyśrodkowanie tekstu */
+}
+
+.member img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.member h3 {
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.member p {
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* Efekt hover – delikatne podniesienie */
+.member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
