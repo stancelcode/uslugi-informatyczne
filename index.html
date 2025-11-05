@@ -1,176 +1,624 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Usługi Informatyczne Kamil Kaczmarczyk - Specjalista IT</title>
-  <meta name="description" content="Specjalista IT w administracji systemów, automatyzacji i bezpieczeństwie infrastruktury." />
-  <meta name="keywords" content="IT, administracja, Linux, automatyzacja, Ansible, DevOps, monitoring, bezpieczeństwo, infrastruktura" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Usługi Informatyczne Kamil Kaczmarczyk – Specjalista IT</title>
+  <meta
+    name="description"
+    content="Specjalista IT w administracji systemów Linux, automatyzacji (DevOps), monitoringu i bezpieczeństwie infrastruktury dla firm."
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <button id="darkModeToggle" title="Zmień tryb kolorów">🌙</button>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-mark" aria-hidden="true"></div>
+        <span>Kamil Kaczmarczyk</span>
+      </div>
 
-<header class="hero">
-  <div class="swiper heroSwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="https://images.pexels.com/photos/1181534/pexels-photo-1181534.jpeg" alt="serwerownie IT"></div>
-      <div class="swiper-slide"><img src="https://images.pexels.com/photos/3184395/pexels-photo-3184395.jpeg" alt="zespół IT"></div>
-      <div class="swiper-slide"><img src="https://images.pexels.com/photos/1367272/pexels-photo-1367272.jpeg" alt="analiza danych"></div>
-      <div class="swiper-slide"><img src="https://images.pexels.com/photos/7793142/pexels-photo-7793142.jpeg" alt="programowanie i automatyzacja"></div>
-    </div>
-
-    <!-- Nawigacja Swipera -->
-    <div class="swiper-pagination"></div>
-    <div class="swiper-nav">
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div>
-  </div>
-
-  <!-- Overlay i hero-content -->
-  <div class="overlay"></div>
-  <div class="hero-content" data-aos="fade-up">
-    <div class="hero-inner">
-      <h1>Usługi Informatyczne <span class="highlight">Kamil Kaczmarczyk</span></h1>
-      <h2>Daj się poprowadzić w świecie technologii.</h2>
-      <nav>
-        <a href="#about">O nas</a>
-        <a href="#whyus">Dlaczego my</a>
-        <a href="#projects">Realizacje</a>
-        <a href="#team">Zespół</a>
-        <a href="#contact">Kontakt</a>
+      <nav aria-label="Główna nawigacja">
+        <ul>
+          <li><a href="#onas">O nas</a></li>
+          <li><a href="#oferta">Usługi</a></li>
+          <li><a href="#referencje">Realizacje</a></li>
+          <li><a href="#technologie">Technologie</a></li>
+          <li><a href="#zespol">Zespół</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
       </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline" data-scroll-to="#oferta">Oferta</button>
+        <button class="btn btn-primary" data-scroll-to="#kontakt">
+          Wyceń projekt <span class="chevron">→</span>
+        </button>
+        <button
+          class="btn btn-outline theme-toggle"
+          type="button"
+          aria-label="Przełącz tryb jasny/ciemny"
+          title="Przełącz tryb jasny/ciemny"
+        >
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+
+      <button class="nav-toggle" aria-label="Otwórz menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-  </div>
-</header>
 
-
+    <div class="container nav-mobile" id="navMobile">
+      <a href="#onas">O nas</a>
+      <a href="#oferta">Usługi</a>
+      <a href="#referencje">Realizacje</a>
+      <a href="#technologie">Technologie</a>
+      <a href="#zespol">Zespół</a>
+      <a href="#kontakt">Kontakt</a>
+      <button class="btn btn-primary" data-scroll-to="#kontakt" style="width:max-content; margin-top:0.4rem;">
+        Bezpłatna konsultacja
+      </button>
+    </div>
+  </header>
 
   <main>
-    <section id="about" data-aos="fade-up">
-      <h2>Kim jesteśmy?</h2>
-      <p>Jesteśmy zespołem specjalistów IT, którzy łączą doświadczenie z pasją do nowoczesnych technologii. Naszym celem jest tworzenie stabilnych, bezpiecznych i wydajnych środowisk IT, które wspierają rozwój Twojego biznesu.</p>
-    </section>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span>Nowoczesne rozwiązania IT dla firm</span>
+          </div>
+          <h1 class="hero-title">
+            Usługi informatyczne dla biznesu
+            <span class="gradient">Kamil Kaczmarczyk</span>
+          </h1>
+          <p class="hero-subtitle">
+            Specjalizuję się w administracji systemami Linux, automatyzacji procesów (DevOps) oraz bezpieczeństwie
+            infrastruktury. Pomagam firmom budować stabilne, skalowalne i monitorowane środowiska IT.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-scroll-to="#kontakt">
+              Porozmawiajmy o Twojej infrastrukturze
+            </button>
+            <button class="btn btn-outline" data-scroll-to="#oferta">Zobacz usługi</button>
+          </div>
+          <div class="hero-meta">
+            <div>
+              <strong>10+ lat doświadczenia</strong>
+              w projektach dla różnych branż
+            </div>
+            <div>
+              <strong>24/7</strong>
+              podejście nastawione na dostępność i bezpieczeństwo
+            </div>
+          </div>
+        </div>
 
-    <section id="whyus" data-aos="fade-up">
-      <h2>Dlaczego warto nas wybrać?</h2>
-      <div class="features-grid">
-        <div class="feature-box"><h3>💡 Doświadczenie</h3><p>Ponad 10 lat w branży IT i dziesiątki zrealizowanych projektów dla firm z różnych sektorów.</p></div>
-        <div class="feature-box"><h3>🧠 Kompetencje</h3><p>Zespół certyfikowanych ekspertów z zakresu Linux, DevOps, bezpieczeństwa i automatyzacji.</p></div>
-        <div class="feature-box"><h3>🔐 Bezpieczeństwo</h3><p>Priorytetem jest ochrona danych, audyty i zgodność z RODO oraz najlepszymi praktykami branży.</p></div>
-        <div class="feature-box"><h3>⚙️ Automatyzacja</h3><p>Redukujemy koszty i ryzyko błędów dzięki inteligentnym narzędziom DevOps.</p></div>
-        <div class="feature-box"><h3>📈 Skalowalność</h3><p>Budujemy systemy gotowe na przyszłość i dynamiczny rozwój Twojej organizacji.</p></div>
-        <div class="feature-box"><h3>🤝 Partnerstwo</h3><p>Stawiamy na długofalową współpracę, opartą na zaufaniu i pełnym wsparciu technicznym.</p></div>
+        <aside class="hero-card" aria-label="Podgląd współpracy IT">
+          <div class="hero-card-blur"></div>
+          <div class="hero-card-inner">
+            <div>
+              <div class="hero-card-header">Obszary specjalizacji</div>
+              <div class="hero-card-title">Stabilna infrastruktura IT</div>
+              <p class="hero-card-desc">
+                Projektuję i utrzymuję środowiska serwerowe, automatyzuję powtarzalne zadania oraz dbam o bezpieczeństwo
+                kluczowych systemów w Twojej organizacji.
+              </p>
+              <div class="hero-card-tags">
+                <span class="pill">Administracja Linux</span>
+                <span class="pill">Automatyzacja / DevOps</span>
+                <span class="pill">Monitoring i logi</span>
+                <span class="pill">Bezpieczeństwo</span>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <img
+                src="images/hero-infra.jpg"
+                alt="Panel monitoringu infrastruktury serwerowej"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section id="projects" data-aos="fade-up">
-      <h2>Nasze realizacje</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg" alt="ELK Stack">
-          <div class="project-info"><h3>System monitorowania serwerów</h3><p>Monitoring infrastruktury IT w oparciu o ELK Stack i alerting w czasie rzeczywistym.</p></div>
-        </div>
-        <div class="project-card">
-          <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg" alt="CI/CD pipeline">
-          <div class="project-info"><h3>Automatyzacja wdrożeń</h3><p>Kompleksowy pipeline CI/CD dla międzynarodowej organizacji finansowej.</p></div>
-        </div>
-        <div class="project-card">
-          <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg" alt="chmura AWS">
-          <div class="project-info"><h3>Bezpieczna infrastruktura chmurowa</h3><p>Projekt i migracja środowisk do AWS z pełnym monitoringiem i backupem.</p></div>
-        </div>
-        <div class="project-card">
-          <img src="https://images.pexels.com/photos/3862372/pexels-photo-3862372.jpeg" alt="DevOps automatyzacja">
-          <div class="project-info"><h3>Pełna automatyzacja DevOps</h3><p>Infrastruktura jako kod (IaC) i wdrożenie Ansible do zarządzania konfiguracjami.</p></div>
-        </div>
-        <div class="project-card">
-          <img src="https://images.pexels.com/photos/4386465/pexels-photo-4386465.jpeg" alt="cybersecurity">
-          <div class="project-info"><h3>Audyt bezpieczeństwa</h3><p>Pełna analiza i zabezpieczenie infrastruktury w sektorze medycznym.</p></div>
-        </div>
-        <div class="project-card">
-          <img src="https://images.pexels.com/photos/3861448/pexels-photo-3861448.jpeg" alt="analiza danych IT">
-          <div class="project-info"><h3>System raportowania IT</h3><p>Budowa paneli analitycznych wspierających decyzje biznesowe w czasie rzeczywistym.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NOWA SEKCJA: TECHNOLOGIE -->
-<section id="technologies" data-aos="fade-up">
-  <h2>Technologie, z którymi pracujemy</h2>
-  <p class="tech-desc">
-    W naszej pracy wykorzystujemy sprawdzone narzędzia open-source i komercyjne rozwiązania, 
-    które zapewniają stabilność, bezpieczeństwo i pełną automatyzację.
-  </p>
-
-  <div class="tech-logos">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" 
-         alt="Linux" title="Linux" data-aos="fade-up" data-aos-delay="0">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" 
-         alt="Ansible" title="Ansible" data-aos="fade-up" data-aos-delay="100">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" 
-         alt="Docker" title="Docker" data-aos="fade-up" data-aos-delay="200">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
-         alt="Python" title="Python" data-aos="fade-up" data-aos-delay="300">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" 
-         alt="Git" title="Git" data-aos="fade-up" data-aos-delay="400">
-  </div>
-</section>
-
-    <section id="team" data-aos="fade-up">
-      <h2>Nasz zespół</h2>
-      <div class="team-grid">
-        <div class="member"><img src="https://images.pexels.com/photos/7414274/pexels-photo-7414274.jpeg" alt="Kamil Kaczmarczyk"><h3>Kamil Kaczmarczyk</h3><p>Założyciel i główny specjalista, ekspert w administracji systemami Linux oraz automatyzacji procesów.</p></div>
-        <div class="member"><img src="https://images.pexels.com/photos/7414283/pexels-photo-7414283.jpeg" alt="Anna Nowak"><h3>Anna Nowak</h3><p>Specjalistka ds. bezpieczeństwa IT, odpowiedzialna za audyty i zabezpieczenia infrastruktury.</p></div>
-        <div class="member"><img src="https://images.pexels.com/photos/3184395/pexels-photo-3184395.jpeg" alt="Paweł Kowalski"><h3>Paweł Kowalski</h3><p>Inżynier DevOps, wdraża procesy CI/CD oraz automatyzację infrastruktury.</p></div>
-        <div class="member"><img src="https://images.pexels.com/photos/1367272/pexels-photo-1367272.jpeg" alt="Ewa Mazur"><h3>Ewa Mazur</h3><p>Analityk danych, odpowiedzialna za monitorowanie i analizę logów systemowych.</p></div>
-      </div>
-    </section>
-
-    <section id="cta" data-aos="fade-up">
-      <h2>Gotowy na współpracę?</h2>
-      <p>Skontaktuj się z nami, a wspólnie stworzymy rozwiązania, które usprawnią Twoją infrastrukturę IT!</p>
-      <a href="#contact" class="cta-btn">Skontaktuj się</a>
-    </section>
-
-    <section id="contact" class="contact-section">
+    <!-- O NAS -->
+    <section id="onas">
       <div class="container">
-        <h2>Skontaktuj się z nami</h2>
-        <p>Masz pytania? Napisz do nas — odpowiemy tak szybko, jak to możliwe.</p>
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">O nas</div>
+            <h2 class="section-title">Łączymy doświadczenie z pasją do technologii</h2>
+          </div>
+          <p class="section-description">
+            Pracujemy blisko biznesu – nie tylko opiekujemy się serwerami, ale projektujemy całe środowisko tak,
+            aby wspierało codzienną pracę Twojej organizacji.
+          </p>
+        </div>
 
-        <form id="contactForm" class="contact-form">
-          <div class="form-group">
-            <input type="text" name="name" placeholder="Imię i nazwisko" required>
-          </div>
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Adres e-mail" required>
-          </div>
-          <div class="form-group">
-            <textarea name="message" rows="5" placeholder="Twoja wiadomość..." required></textarea>
-          </div>
+        <div class="content">
+          <article class="card">
+            <h3>Kim jesteśmy?</h3>
+            <p>
+              Jesteśmy zespołem specjalistów IT, którzy łączą praktyczne doświadczenie z nowoczesnym podejściem do
+              infrastruktury. Nasz cel to stabilne, bezpieczne i wydajne środowiska IT, które nie przeszkadzają
+              w pracy – tylko ją przyspieszają.
+            </p>
+            <div class="values-grid">
+              <div>
+                <strong>Środowiska produkcyjne</strong><br />
+                Doświadczenie w utrzymaniu systemów działających 24/7.
+              </div>
+              <div>
+                <strong>Pełna obserwowalność</strong><br />
+                Monitoring, logi i alerty zamiast zgadywania, co się stało.
+              </div>
+              <div>
+                <strong>Praca zdalna i on-site</strong><br />
+                Możliwość wsparcia zdalnego oraz pracy na miejscu u klienta.
+              </div>
+              <div>
+                <strong>Język biznesu</strong><br />
+                Tłumaczymy techniczne szczegóły na konkretne korzyści dla firmy.
+              </div>
+            </div>
+          </article>
 
-          <div class="form-group captcha-box">
-            <img src="captcha.php" alt="CAPTCHA" class="captcha-img" id="captchaImage">
-            <input type="text" name="captcha" placeholder="Wpisz wynik działania" required>
-            <button type="button" id="reloadCaptcha" class="reload-btn">🔄</button>
-          </div>
+          <article class="card">
+            <h3>Dlaczego warto z nami współpracować?</h3>
+            <p>
+              Łączymy kompetencje z obszarów administracji, DevOps i bezpieczeństwa. Nie sprzedajemy jednego narzędzia –
+              dobieramy rozwiązania do faktycznych potrzeb Twojej organizacji.
+            </p>
+            <div class="values-grid">
+              <div>
+                <strong>Doświadczenie</strong><br />
+                Ponad 10 lat w branży IT i projekty w różnych sektorach.
+              </div>
+              <div>
+                <strong>Kompetencje</strong><br />
+                Linux, automatyzacja, CI/CD, kontenery, monitoring, chmura.
+              </div>
+              <div>
+                <strong>Bezpieczeństwo</strong><br />
+                Audyty, hardening oraz zgodność z dobrymi praktykami i RODO.
+              </div>
+              <div>
+                <strong>Partnerstwo</strong><br />
+                Budujemy długofalowe relacje zamiast jednorazowych wdrożeń.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <button type="submit" class="btn-send">Wyślij wiadomość</button>
-        </form>
+    <!-- USŁUGI -->
+    <section id="oferta">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Usługi</div>
+            <h2 class="section-title">Usługi IT dopasowane do Twojej infrastruktury</h2>
+          </div>
+          <p class="section-description">
+            Zajmujemy się projektowaniem, wdrażaniem i utrzymaniem środowisk IT. Poniżej przykładowe obszary, w których
+            możemy pomóc Twojej organizacji.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-tag">Infrastruktura</div>
+            <h3 class="service-title">Administracja serwerami i systemami</h3>
+            <p>
+              Kompleksowa opieka nad serwerami Linux i usługami krytycznymi dla działania firmy.
+            </p>
+            <ul class="service-list">
+              <li><span class="bullet">•</span> konfiguracja i utrzymanie serwerów Linux</li>
+              <li><span class="bullet">•</span> kopie zapasowe i procedury odtwarzania</li>
+              <li><span class="bullet">•</span> aktualizacje i monitorowanie stanu usług</li>
+              <li><span class="bullet">•</span> wsparcie przy migracjach i zmianach architektury</li>
+            </ul>
+            <div class="service-price">
+              Współpraca <strong>długoterminowa lub projektowa</strong> – w zależności od potrzeb.
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">DevOps</div>
+            <h3 class="service-title">Automatyzacja i CI/CD</h3>
+            <p>
+              Budowa i utrzymanie procesów automatycznych wdrożeń oraz zarządzania konfiguracją.
+            </p>
+            <ul class="service-list">
+              <li><span class="bullet">•</span> projektowanie pipeline CI/CD</li>
+              <li><span class="bullet">•</span> Ansible i Infrastructure as Code</li>
+              <li><span class="bullet">•</span> automatyczne wdrożenia aplikacji i usług</li>
+              <li><span class="bullet">•</span> integracja z istniejącymi narzędziami zespołu</li>
+            </ul>
+            <div class="service-price">
+              Zakres <strong>dostosowany do aktualnego procesu developmentu</strong> w Twojej firmie.
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Monitoring</div>
+            <h3 class="service-title">Monitoring i logowanie</h3>
+            <p>
+              Tworzenie systemów obserwowalności opartych m.in. o ELK Stack, Prometheus i Grafanę.
+            </p>
+            <ul class="service-list">
+              <li><span class="bullet">•</span> centralne zbieranie logów z systemów i aplikacji</li>
+              <li><span class="bullet">•</span> czytelne dashboardy dla zespołów IT i biznesu</li>
+              <li><span class="bullet">•</span> alerting w czasie rzeczywistym</li>
+              <li><span class="bullet">•</span> integracje z komunikatorami i systemami ticketowymi</li>
+            </ul>
+            <div class="service-price">
+              Projekt <strong>pod konkretne środowisko</strong> – od kilku serwerów po rozbudowaną infrastrukturę.
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Security</div>
+            <h3 class="service-title">Bezpieczeństwo i audyty</h3>
+            <p>
+              Analiza obecnego stanu bezpieczeństwa oraz wdrożenie praktycznych zabezpieczeń.
+            </p>
+            <ul class="service-list">
+              <li><span class="bullet">•</span> audyty konfiguracji systemów i usług</li>
+              <li><span class="bullet">•</span> hardening serwerów i usług sieciowych</li>
+              <li><span class="bullet">•</span> rekomendacje zgodne z dobrymi praktykami</li>
+              <li><span class="bullet">•</span> wsparcie przy incydentach bezpieczeństwa</li>
+            </ul>
+            <div class="service-price">
+              Zakres prac <strong>ustalany indywidualnie</strong> po krótkiej konsultacji.
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Chmura</div>
+            <h3 class="service-title">Infrastruktura chmurowa i wirtualizacja</h3>
+            <p>
+              Projektowanie środowisk w chmurze i ich integracja z istniejącą infrastrukturą.
+            </p>
+            <ul class="service-list">
+              <li><span class="bullet">•</span> migracje do AWS, Azure lub środowisk hybrydowych</li>
+              <li><span class="bullet">•</span> konteneryzacja wybranych usług</li>
+              <li><span class="bullet">•</span> optymalizacja kosztów infrastruktury</li>
+              <li><span class="bullet">•</span> architektura odporna na awarie</li>
+            </ul>
+            <div class="service-price">
+              Wycena <strong>w oparciu o skalę środowiska</strong> i wymagania biznesowe.
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Konsultacje</div>
+            <h3 class="service-title">Doradztwo i wsparcie IT</h3>
+            <p>
+              Pomoc przy planowaniu rozwoju infrastruktury oraz przy konkretnych wyzwaniach technicznych.
+            </p>
+            <ul class="service-list">
+              <li><span class="bullet">•</span> konsultacje jednorazowe i cykliczne</li>
+              <li><span class="bullet">•</span> wsparcie przy przetargach i wyborze dostawców</li>
+              <li><span class="bullet">•</span> warsztaty dla zespołów technicznych</li>
+              <li><span class="bullet">•</span> dokumentacja i dobre praktyki</li>
+            </ul>
+            <div class="service-price">
+              Elastyczna forma <strong>współpracy doradczej</strong>, dopasowana do Twojego zespołu.
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-strip">
+          <div>
+            <strong>Nie wiesz, od czego zacząć?</strong><br />
+            Opisz w kilku zdaniach swoją obecną infrastrukturę – przygotuję propozycję pierwszych kroków oraz możliwych
+            usprawnień.
+          </div>
+          <button class="btn" data-scroll-to="#kontakt">Zapytaj o rekomendacje</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REALIZACJE -->
+    <section id="referencje">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Realizacje</div>
+            <h2 class="section-title">Przykładowe projekty i wdrożenia</h2>
+          </div>
+          <p class="section-description">
+            Poniżej wybrane realizacje oparte na monitoringu infrastruktury, automatyzacji wdrożeń i rozwiązaniach
+            chmurowych.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="testimonial">
+            <figure class="testimonial-figure">
+              <img
+                src="images/monitoring-dashboard.jpg"
+                alt="Dashboard systemu monitoringu infrastruktury serwerowej"
+                loading="lazy"
+              />
+              <figcaption>Monitoring infrastruktury serwerowej</figcaption>
+            </figure>
+            <p>
+              System monitorowania serwerów i usług oparty o ELK Stack oraz alerting w czasie rzeczywistym. Klient zyskał
+              jednolity podgląd kondycji infrastruktury i szybszą reakcję na incydenty.
+            </p>
+            <div class="testimonial-footer">
+              <div>
+                <div class="testimonial-name">Firma produkcyjna</div>
+                <div class="testimonial-role">Monitoring i logowanie</div>
+              </div>
+              <div class="testimonial-badge">ELK Stack</div>
+            </div>
+          </article>
+
+          <article class="testimonial">
+            <figure class="testimonial-figure">
+              <img
+                src="images/devops-pipeline.jpg"
+                alt="Schemat pipeline CI/CD dla aplikacji biznesowych"
+                loading="lazy"
+              />
+              <figcaption>Automatyzacja wdrożeń CI/CD</figcaption>
+            </figure>
+            <p>
+              Projekt i wdrożenie pipeline CI/CD dla międzynarodowej organizacji, obejmujący automatyczne testy,
+              budowanie oraz wdrożenia aplikacji na środowiska testowe i produkcyjne.
+            </p>
+            <div class="testimonial-footer">
+              <div>
+                <div class="testimonial-name">Sektor finansowy</div>
+                <div class="testimonial-role">Automatyzacja wdrożeń</div>
+              </div>
+              <div class="testimonial-badge">CI/CD</div>
+            </div>
+          </article>
+
+          <article class="testimonial">
+            <figure class="testimonial-figure">
+              <img
+                src="images/cloud-infra.jpg"
+                alt="Schemat infrastruktury chmurowej dla firmy usługowej"
+                loading="lazy"
+              />
+              <figcaption>Bezpieczna infrastruktura chmurowa</figcaption>
+            </figure>
+            <p>
+              Zaprojektowanie i uruchomienie bezpiecznej infrastruktury chmurowej wraz z pełnym monitoringiem, kopiami
+              zapasowymi oraz optymalizacją kosztów korzystania z zasobów.
+            </p>
+            <div class="testimonial-footer">
+              <div>
+                <div class="testimonial-name">Firma usługowa</div>
+                <div class="testimonial-role">Infrastruktura chmurowa</div>
+              </div>
+              <div class="testimonial-badge">Chmura</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGIE -->
+    <section id="technologie">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Technologie</div>
+            <h2 class="section-title">Stawiamy na sprawdzone narzędzia</h2>
+          </div>
+          <p class="section-description">
+            Korzystamy z nowoczesnych, ale stabilnych rozwiązań – zarówno open source, jak i komercyjnych – dobieranych
+            do konkretnego projektu i wymagań.
+          </p>
+        </div>
+
+        <div class="content">
+          <article class="card">
+            <h3>Środowisko pracy</h3>
+            <p>
+              W zależności od projektu dobieramy narzędzia tak, aby ułatwić rozwój, utrzymanie i skalowanie systemów.
+            </p>
+            <div class="values-grid">
+              <div>
+                <strong>Linux</strong><br />
+                dystrybucje serwerowe dopasowane do środowiska produkcyjnego.
+              </div>
+              <div>
+                <strong>Ansible</strong><br />
+                automatyzacja konfiguracji i powtarzalnych zadań.
+              </div>
+              <div>
+                <strong>Docker / kontenery</strong><br />
+                izolacja usług i łatwiejsze wdrażanie aplikacji.
+              </div>
+              <div>
+                <strong>ELK, Prometheus, Grafana</strong><br />
+                monitoring, logowanie i czytelne dashboardy.
+              </div>
+              <div>
+                <strong>Git</strong><br />
+                kontrola wersji i przejrzyste procesy zmian.
+              </div>
+              <div>
+                <strong>Chmura</strong><br />
+                AWS / inne platformy – w zależności od preferencji klienta.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZESPÓŁ -->
+    <section id="zespol">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Zespół</div>
+            <h2 class="section-title">Ludzie stojący za projektami</h2>
+          </div>
+          <p class="section-description">
+            W projekty angażujemy specjalistów z różnych obszarów – od administracji i DevOps, przez bezpieczeństwo,
+            aż po analizę danych.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-tag">Founder</div>
+            <h3 class="service-title">Kamil Kaczmarczyk</h3>
+            <p>
+              Założyciel i główny specjalista. Odpowiada za architekturę rozwiązań, administrację systemami Linux oraz
+              nadzór nad projektami automatyzacji.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Security</div>
+            <h3 class="service-title">Specjalista ds. bezpieczeństwa</h3>
+            <p>
+              Zajmuje się audytami bezpieczeństwa, analizą konfiguracji oraz rekomendacjami zmian zgodnych z dobrymi
+              praktykami branżowymi.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">DevOps</div>
+            <h3 class="service-title">Inżynier DevOps</h3>
+            <p>
+              Projektuje i utrzymuje pipeline CI/CD, automatyzuje wdrożenia i integruje narzędzia zespołów developerskich
+              z infrastrukturą.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Monitoring</div>
+            <h3 class="service-title">Analityk danych i logów</h3>
+            <p>
+              Odpowiada za konfigurację systemów monitoringu oraz przygotowywanie dashboardów i raportów dla biznesu.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Kontakt</div>
+            <h2 class="section-title">Porozmawiajmy o Twoim środowisku IT</h2>
+          </div>
+          <p class="section-description">
+            Napisz kilka zdań o swojej infrastrukturze – ilu użytkowników obsługujesz, jakie systemy są kluczowe i z
+            jakimi wyzwaniami się mierzysz. Odpowiem z propozycją dalszych kroków.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-card">
+            <h3>Jak przygotować zapytanie?</h3>
+            <p>
+              Aby szybciej wrócić z konkretną propozycją, możesz od razu uwzględnić w wiadomości kilka informacji o
+              środowisku i oczekiwaniach.
+            </p>
+            <div class="contact-items">
+              <div>
+                <span class="label">Skala</span>
+                <span>liczba serwerów / usług, kluczowe aplikacje, liczba użytkowników</span>
+              </div>
+              <div>
+                <span class="label">Obszar</span>
+                <span>administracja, automatyzacja, monitoring, bezpieczeństwo itp.</span>
+              </div>
+              <div>
+                <span class="label">Cel</span>
+                <span>np. stabilizacja, migracja, redukcja kosztów, wdrożenie monitoringu</span>
+              </div>
+              <div>
+                <span class="label">Pilność</span>
+                <span>projekt planowany czy problem wymagający szybkiej reakcji</span>
+              </div>
+            </div>
+            <p class="contact-hint">
+              W tym miejscu możesz również dodać swoje dane kontaktowe (e-mail, telefon, adres), jeśli chcesz je
+              wyświetlać klientom.
+            </p>
+          </aside>
+
+          <div>
+            <form id="contactForm" novalidate>
+              <div class="field">
+                <label for="name">Imię i nazwisko<span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="np. Jan Kowalski" required />
+                <div class="error" id="errorName">Podaj swoje imię i nazwisko.</div>
+              </div>
+
+              <div class="field">
+                <label for="email">Adres e-mail<span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="np. kontakt@firma.pl" required />
+                <div class="error" id="errorEmail">Podaj poprawny adres e-mail.</div>
+              </div>
+
+              <div class="field">
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="phone" placeholder="np. +48 600 000 000" />
+                <small>Opcjonalnie – jeśli wolisz, byśmy zadzwonili.</small>
+              </div>
+
+              <div class="field">
+                <label for="message">Opisz krótko swoje środowisko IT<span class="required">*</span></label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Np. kilka serwerów Linux, brak monitoringu, potrzebne wdrożenie kopii zapasowych i podstawowego alertingu."
+                  required
+                ></textarea>
+                <div class="error" id="errorMessage">Napisz kilka zdań o swojej infrastrukturze.</div>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
+                <p>
+                  Wysyłając formularz, wyrażasz zgodę na kontakt w celu omówienia szczegółów współpracy.
+                </p>
+              </div>
+              <div class="form-success" id="formSuccess">
+                Dziękujemy! Twoja wiadomość została zapisana (w tej wersji demo tylko w pamięci przeglądarki).
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <div id="toast" class="toast"></div>
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Kamil Kaczmarczyk. Wszystkie prawa zastrzeżone.</div>
+      <div class="footer-links">
+        <a href="#onas">O nas</a>
+        <a href="#oferta">Usługi</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </footer>
 
-  <footer><p>© 2025 Usługi Informatyczne Kamil Kaczmarczyk</p></footer>
-  <button id="backToTop" title="Do góry">↑</button>
-
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
