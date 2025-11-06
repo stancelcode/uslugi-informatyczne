@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.querySelector(".theme-toggle");
   const themeIcon = themeToggle ? themeToggle.querySelector(".theme-icon") : null;
 
-  // Ustawienie motywu przy starcie
+  // MOTYW: odczyt z localStorage + prefers-color-scheme
   const storedTheme = localStorage.getItem("theme");
   if (storedTheme === "light" || storedTheme === "dark") {
     root.setAttribute("data-theme", storedTheme);
@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   updateThemeIcon();
 
-  // Przełącznik dzień/noc
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
       const current = root.getAttribute("data-theme") === "light" ? "dark" : "light";
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateThemeIcon() {
-    if (!themeIcon) return;
+    if (!themeIcon || !themeToggle) return;
     const current = root.getAttribute("data-theme");
     if (current === "light") {
       themeIcon.textContent = "🌙";
@@ -37,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Mobile nav
+  // MOBILE NAV
   const navToggle = document.querySelector(".nav-toggle");
   const navMobile = document.getElementById("navMobile");
 
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Smooth scroll (linki z data-scroll-to i menu)
+  // SMOOTH SCROLL
   const scrollLinks = [
     ...document.querySelectorAll("[data-scroll-to]"),
     ...document.querySelectorAll("header nav a"),
@@ -66,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       target.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // zamknij mobilne menu po kliknięciu
       if (navMobile && navMobile.classList.contains("open")) {
         navMobile.classList.remove("open");
         if (navToggle) navToggle.setAttribute("aria-expanded", "false");
@@ -74,7 +72,80 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Walidacja formularza (prosta, front-end)
+  // HERO SLIDER
+  const slider = document.querySelector(".hero-slider");
+  if (slider) {
+    const slides = Array.from(slider.querySelectorAll(".hero-slide"));
+    const dots = Array.from(slider.querySelectorAll(".hero-slider-dot"));
+    const prevBtn = slider.querySelector(".hero-slider-prev");
+    const nextBtn = slider.querySelector(".hero-slider-next");
+
+    let current = 0;
+    let autoTimer = null;
+
+    function showSlide(index) {
+      if (!slides.length) return;
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      current = index;
+
+      slides.forEach((slide, i) => {
+        const isActive = i === current;
+        slide.classList.toggle("active", isActive);
+        slide.setAttribute("aria-hidden", isActive ? "false" : "true");
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === current);
+      });
+    }
+
+    function nextSlide() {
+      showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      showSlide(current - 1);
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(nextSlide, 7000);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        nextSlide();
+        startAuto();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        prevSlide();
+        startAuto();
+      });
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        startAuto();
+      });
+    });
+
+    showSlide(0);
+    startAuto();
+  }
+
+  // FORMULARZ – prosta walidacja front-end
   const form = document.getElementById("contactForm");
   if (form) {
     const nameInput = document.getElementById("name");
@@ -86,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const success = document.getElementById("formSuccess");
 
     form.addEventListener("submit", (e) => {
-      e.preventDefault();
       let valid = true;
 
       if (!nameInput.value.trim()) {
@@ -110,12 +180,16 @@ document.addEventListener("DOMContentLoaded", () => {
         errorMessage.classList.remove("visible");
       }
 
-      if (!valid) return;
+      if (!valid) {
+        e.preventDefault();
+        return;
+      }
 
-      // demo: tylko pokazujemy komunikat, bez backendu
+      // jeśli chcesz zostawić pełne wysyłanie do send_form.php, zostaw e.preventDefault() zakomentowane
+      // e.preventDefault();
+
       if (success) {
         success.classList.add("visible");
-        form.reset();
       }
     });
   }
@@ -124,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
   }
 
-  // Dynamiczny rok w stopce
+  // ROK W STOPCE
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();

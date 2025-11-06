@@ -45,9 +45,7 @@
       </div>
 
       <button class="nav-toggle" aria-label="Otwórz menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
 
@@ -58,7 +56,7 @@
       <a href="#technologie">Technologie</a>
       <a href="#zespol">Zespół</a>
       <a href="#kontakt">Kontakt</a>
-      <button class="btn btn-primary" data-scroll-to="#kontakt" style="width:max-content; margin-top:0.4rem;">
+      <button class="btn btn-primary" data-scroll-to="#kontakt" style="width:max-content;margin-top:0.4rem;">
         Bezpłatna konsultacja
       </button>
     </div>
@@ -115,13 +113,46 @@
                 <span class="pill">Monitoring i logi</span>
                 <span class="pill">Bezpieczeństwo</span>
               </div>
+              <div class="hero-stats">
+                <div class="stat">
+                  <strong>Monitoring</strong>
+                  ELK / Prometheus / Grafana dopasowane do Twoich systemów
+                </div>
+                <div class="stat">
+                  <strong>Automatyzacja</strong>
+                  Ansible oraz CI/CD do powtarzalnych wdrożeń
+                </div>
+                <div class="stat">
+                  <strong>Bezpieczeństwo</strong>
+                  audyty, hardening, kopie zapasowe i procedury
+                </div>
+                <div class="stat">
+                  <strong>Wsparcie</strong>
+                  doradztwo przy rozwoju i migracjach środowiska
+                </div>
+              </div>
             </div>
-            <div class="hero-visual">
-              <img
-                src="images/hero-infra.jpg"
-                alt="Panel monitoringu infrastruktury serwerowej"
-                loading="lazy"
-              />
+
+            <!-- SLIDER -->
+            <div class="hero-slider" aria-label="Zdjęcia z realizacji infrastruktury IT">
+              <div class="hero-slide active">
+                <img src="images/hero-card-pic1.jpeg" alt="Panel monitoringu serwerów i usług" />
+              </div>
+              <div class="hero-slide">
+                <img src="images/hero-card-pic2.jpeg" alt="Schemat infrastruktury serwerowej" />
+              </div>
+              <div class="hero-slide">
+                <img src="images/hero-card-pic3.jpeg" alt="Widok pulpitu administracyjnego systemów IT" />
+              </div>
+
+              <button class="hero-slider-nav hero-slider-prev" type="button" aria-label="Poprzednie zdjęcie">‹</button>
+              <button class="hero-slider-nav hero-slider-next" type="button" aria-label="Następne zdjęcie">›</button>
+
+              <div class="hero-slider-dots" role="tablist" aria-label="Wybierz zdjęcie">
+                <button type="button" class="hero-slider-dot active" data-hero-slide-dot="0" aria-label="Zdjęcie 1"></button>
+                <button type="button" class="hero-slider-dot" data-hero-slide-dot="1" aria-label="Zdjęcie 2"></button>
+                <button type="button" class="hero-slider-dot" data-hero-slide-dot="2" aria-label="Zdjęcie 3"></button>
+              </div>
             </div>
           </div>
         </aside>
@@ -141,7 +172,6 @@
             aby wspierało codzienną pracę Twojej organizacji.
           </p>
         </div>
-
         <div class="content">
           <article class="card">
             <h3>Kim jesteśmy?</h3>
@@ -337,21 +367,13 @@
             <h2 class="section-title">Przykładowe projekty i wdrożenia</h2>
           </div>
           <p class="section-description">
-            Poniżej wybrane realizacje oparte na monitoringu infrastruktury, automatyzacji wdrożeń i rozwiązaniach
-            chmurowych.
+            Przykłady projektów zrealizowanych dla klientów z różnych branż – od monitoringu infrastruktury
+            po automatyzację wdrożeń.
           </p>
         </div>
 
         <div class="testimonials-grid">
           <article class="testimonial">
-            <figure class="testimonial-figure">
-              <img
-                src="images/monitoring-dashboard.jpg"
-                alt="Dashboard systemu monitoringu infrastruktury serwerowej"
-                loading="lazy"
-              />
-              <figcaption>Monitoring infrastruktury serwerowej</figcaption>
-            </figure>
             <p>
               System monitorowania serwerów i usług oparty o ELK Stack oraz alerting w czasie rzeczywistym. Klient zyskał
               jednolity podgląd kondycji infrastruktury i szybszą reakcję na incydenty.
@@ -366,14 +388,6 @@
           </article>
 
           <article class="testimonial">
-            <figure class="testimonial-figure">
-              <img
-                src="images/devops-pipeline.jpg"
-                alt="Schemat pipeline CI/CD dla aplikacji biznesowych"
-                loading="lazy"
-              />
-              <figcaption>Automatyzacja wdrożeń CI/CD</figcaption>
-            </figure>
             <p>
               Projekt i wdrożenie pipeline CI/CD dla międzynarodowej organizacji, obejmujący automatyczne testy,
               budowanie oraz wdrożenia aplikacji na środowiska testowe i produkcyjne.
@@ -388,14 +402,6 @@
           </article>
 
           <article class="testimonial">
-            <figure class="testimonial-figure">
-              <img
-                src="images/cloud-infra.jpg"
-                alt="Schemat infrastruktury chmurowej dla firmy usługowej"
-                loading="lazy"
-              />
-              <figcaption>Bezpieczna infrastruktura chmurowa</figcaption>
-            </figure>
             <p>
               Zaprojektowanie i uruchomienie bezpiecznej infrastruktury chmurowej wraz z pełnym monitoringiem, kopiami
               zapasowymi oraz optymalizacją kosztów korzystania z zasobów.
@@ -556,13 +562,12 @@
               </div>
             </div>
             <p class="contact-hint">
-              W tym miejscu możesz również dodać swoje dane kontaktowe (e-mail, telefon, adres), jeśli chcesz je
-              wyświetlać klientom.
+              Tutaj możesz dodać swoje dane kontaktowe (e-mail, telefon, adres), jeśli chcesz je wyświetlać klientom.
             </p>
           </aside>
 
           <div>
-            <form id="contactForm" novalidate>
+            <form id="contactForm" action="send_form.php" method="post" novalidate>
               <div class="field">
                 <label for="name">Imię i nazwisko<span class="required">*</span></label>
                 <input type="text" id="name" name="name" placeholder="np. Jan Kowalski" required />
@@ -586,7 +591,7 @@
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Np. kilka serwerów Linux, brak monitoringu, potrzebne wdrożenie kopii zapasowych i podstawowego alertingu."
+                  placeholder="Np. kilka serwerów Linux, brak monitoringu, potrzebne wdrożenie kopii zapasowych i alertingu."
                   required
                 ></textarea>
                 <div class="error" id="errorMessage">Napisz kilka zdań o swojej infrastrukturze.</div>
@@ -599,7 +604,8 @@
                 </p>
               </div>
               <div class="form-success" id="formSuccess">
-                Dziękujemy! Twoja wiadomość została zapisana (w tej wersji demo tylko w pamięci przeglądarki).
+                Dziękujemy! Twoja wiadomość została wysłana. Jeśli formularz ma działać z CAPTCHA, możesz tu podpiąć
+                istniejące rozwiązanie z send_form.php / captcha.php.
               </div>
             </form>
           </div>
