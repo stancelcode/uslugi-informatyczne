@@ -111,8 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // jeśli chcesz AJAX, tutaj można go dodać;
-      // teraz po prostu pozwalamy formularzowi normalnie się wysłać
+      // tutaj możesz kiedyś dodać AJAX;
+      // na razie pozwalamy formularzowi normalnie się wysłać
       if (successMsg) {
         successMsg.classList.add("visible");
       }
@@ -123,5 +123,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
+  }
+
+  // === ANIMACJE POJAWIANIA SIĘ PRZY SCROLLU ===
+  const revealElements = document.querySelectorAll(".reveal");
+
+  if (revealElements.length > 0) {
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const delay = el.dataset.revealDelay
+                ? parseInt(el.dataset.revealDelay, 10) || 0
+                : 0;
+
+              if (delay > 0) {
+                setTimeout(() => {
+                  el.classList.add("reveal-visible");
+                }, delay);
+              } else {
+                el.classList.add("reveal-visible");
+              }
+
+              obs.unobserve(el);
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+        }
+      );
+
+      revealElements.forEach((el) => observer.observe(el));
+    } else {
+      // starsze przeglądarki – po prostu pokaż
+      revealElements.forEach((el) => el.classList.add("reveal-visible"));
+    }
   }
 });
