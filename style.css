@@ -272,8 +272,8 @@ nav a:hover::after {
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-  gap: 2.8rem;            /* mniejsza dziura między kolumnami */
-  align-items: stretch;   /* karta po prawej rozciąga się na całą wysokość */
+  gap: 2.8rem;
+  align-items: stretch;
   margin-top: 0.6rem;
 }
 
@@ -334,7 +334,7 @@ nav a:hover::after {
   font-size: 1.02rem;
   color: var(--text-muted);
   max-width: 34rem;
-  margin-bottom: 2rem;   /* trochę większa wysokość bloku tekstu */
+  margin-bottom: 2rem;
 }
 
 .hero-actions {
@@ -370,7 +370,7 @@ nav a:hover::after {
   padding: 1.5rem 1.4rem;
   position: relative;
   overflow: hidden;
-  display: flex;          /* rozciąga kartę na całą wysokość kolumny */
+  display: flex;
 }
 
 :root[data-theme="light"] .hero-card {
@@ -393,7 +393,7 @@ nav a:hover::after {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* treść lepiej wypełnia kartę */
+  justify-content: space-between;
   gap: 1.2rem;
   width: 100%;
 }
@@ -436,8 +436,8 @@ nav a:hover::after {
 /* JAŚNIEJSZE „PIGUŁKI” W TRYBIE JASNYM */
 :root[data-theme="light"] .pill,
 :root[data-theme="light"] .testimonial-badge {
-  background: #e5f0ff;  /* jasny niebieski */
-  color: #0f172a;       /* ciemny tekst */
+  background: #e5f0ff;
+  color: #0f172a;
   border-color: #93c5fd;
 }
 
@@ -615,6 +615,13 @@ section {
   border-radius: 0.8rem;
   background: rgba(15, 23, 42, 0.85);
   border: 1px dashed rgba(148, 163, 184, 0.45);
+}
+
+/* JAŚNIEJSZE KAFELKI values-grid W JASNYM MOTYWIE */
+:root[data-theme="light"] .values-grid div {
+  background: #f3f4ff;
+  color: #0f172a;
+  border-color: rgba(148, 163, 184, 0.7);
 }
 
 /* USŁUGI */
@@ -828,8 +835,12 @@ section {
   color: #f9fafb;
 }
 
+/* jaśniejszy przycisk w pasku CTA w jasnym trybie */
 :root[data-theme="light"] .cta-strip .btn {
-  background: #0f172a;
+  background: #e0ecff;
+  color: #0f172a;
+  border-color: #93c5fd;
+  box-shadow: 0 12px 30px rgba(148, 163, 184, 0.5);
 }
 
 /* KONTAKT */
