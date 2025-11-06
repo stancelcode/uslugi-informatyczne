@@ -432,15 +432,16 @@ nav a:hover::after {
   margin-bottom: 0.15rem;
 }
 
-/* HERO slider */
+/* GŁÓWNY HERO SLIDER (pod nagłówkiem) */
 .hero-slider {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  background: rgba(15, 23, 42, 0.9);
-  min-height: 180px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.98);
+  min-height: 220px;
   box-shadow: var(--shadow-soft);
+  margin: 1.5rem auto 2.2rem;
 }
 
 .hero-slide {
@@ -465,8 +466,8 @@ nav a:hover::after {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.5);
   background: rgba(15, 23, 42, 0.85);
@@ -474,31 +475,31 @@ nav a:hover::after {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   cursor: pointer;
   padding: 0;
 }
 
 .hero-slider-prev {
-  left: 0.55rem;
+  left: 0.75rem;
 }
 
 .hero-slider-next {
-  right: 0.55rem;
+  right: 0.75rem;
 }
 
 .hero-slider-dots {
   position: absolute;
-  bottom: 0.45rem;
+  bottom: 0.6rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.3rem;
+  gap: 0.4rem;
 }
 
 .hero-slider-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.8);
   background: rgba(15, 23, 42, 0.8);

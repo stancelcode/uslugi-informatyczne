@@ -65,97 +65,100 @@
   <main>
     <!-- HERO -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="badge">
-            <span class="badge-dot"></span>
-            <span>Nowoczesne rozwiązania IT dla firm</span>
+      <div class="container">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span>Nowoczesne rozwiązania IT dla firm</span>
+        </div>
+        <h1 class="hero-title">
+          Usługi informatyczne dla biznesu
+          <span class="gradient">Kamil Kaczmarczyk</span>
+        </h1>
+
+        <!-- GŁÓWNY SLIDER POD NAGŁÓWKIEM -->
+        <div class="hero-slider" aria-label="Zdjęcia z realizacji infrastruktury IT">
+          <div class="hero-slide active">
+            <img src="images/hero-card-pic1.jpeg" alt="Panel monitoringu serwerów i usług" />
           </div>
-          <h1 class="hero-title">
-            Usługi informatyczne dla biznesu
-            <span class="gradient">Kamil Kaczmarczyk</span>
-          </h1>
-          <p class="hero-subtitle">
-            Specjalizuję się w administracji systemami Linux, automatyzacji procesów (DevOps) oraz bezpieczeństwie
-            infrastruktury. Pomagam firmom budować stabilne, skalowalne i monitorowane środowiska IT.
-          </p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" data-scroll-to="#kontakt">
-              Porozmawiajmy o Twojej infrastrukturze
-            </button>
-            <button class="btn btn-outline" data-scroll-to="#oferta">Zobacz usługi</button>
+          <div class="hero-slide">
+            <img src="images/hero-card-pic2.jpeg" alt="Schemat infrastruktury serwerowej" />
           </div>
-          <div class="hero-meta">
-            <div>
-              <strong>10+ lat doświadczenia</strong>
-              w projektach dla różnych branż
-            </div>
-            <div>
-              <strong>24/7</strong>
-              podejście nastawione na dostępność i bezpieczeństwo
-            </div>
+          <div class="hero-slide">
+            <img src="images/hero-card-pic3.jpeg" alt="Widok pulpitu administracyjnego systemów IT" />
+          </div>
+
+          <button class="hero-slider-nav hero-slider-prev" type="button" aria-label="Poprzednie zdjęcie">‹</button>
+          <button class="hero-slider-nav hero-slider-next" type="button" aria-label="Następne zdjęcie">›</button>
+
+          <div class="hero-slider-dots" role="tablist" aria-label="Wybierz zdjęcie">
+            <button type="button" class="hero-slider-dot active" data-hero-slide-dot="0" aria-label="Zdjęcie 1"></button>
+            <button type="button" class="hero-slider-dot" data-hero-slide-dot="1" aria-label="Zdjęcie 2"></button>
+            <button type="button" class="hero-slider-dot" data-hero-slide-dot="2" aria-label="Zdjęcie 3"></button>
           </div>
         </div>
 
-        <aside class="hero-card" aria-label="Podgląd współpracy IT">
-          <div class="hero-card-blur"></div>
-          <div class="hero-card-inner">
-            <div>
-              <div class="hero-card-header">Obszary specjalizacji</div>
-              <div class="hero-card-title">Stabilna infrastruktura IT</div>
-              <p class="hero-card-desc">
-                Projektuję i utrzymuję środowiska serwerowe, automatyzuję powtarzalne zadania oraz dbam o bezpieczeństwo
-                kluczowych systemów w Twojej organizacji.
-              </p>
-              <div class="hero-card-tags">
-                <span class="pill">Administracja Linux</span>
-                <span class="pill">Automatyzacja / DevOps</span>
-                <span class="pill">Monitoring i logi</span>
-                <span class="pill">Bezpieczeństwo</span>
-              </div>
-              <div class="hero-stats">
-                <div class="stat">
-                  <strong>Monitoring</strong>
-                  ELK / Prometheus / Grafana dopasowane do Twoich systemów
-                </div>
-                <div class="stat">
-                  <strong>Automatyzacja</strong>
-                  Ansible oraz CI/CD do powtarzalnych wdrożeń
-                </div>
-                <div class="stat">
-                  <strong>Bezpieczeństwo</strong>
-                  audyty, hardening, kopie zapasowe i procedury
-                </div>
-                <div class="stat">
-                  <strong>Wsparcie</strong>
-                  doradztwo przy rozwoju i migracjach środowiska
-                </div>
-              </div>
+        <div class="hero-grid">
+          <div>
+            <p class="hero-subtitle">
+              Specjalizuję się w administracji systemami Linux, automatyzacji procesów (DevOps) oraz bezpieczeństwie
+              infrastruktury. Pomagam firmom budować stabilne, skalowalne i monitorowane środowiska IT.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" data-scroll-to="#kontakt">
+                Porozmawiajmy o Twojej infrastrukturze
+              </button>
+              <button class="btn btn-outline" data-scroll-to="#oferta">Zobacz usługi</button>
             </div>
-
-            <!-- SLIDER -->
-            <div class="hero-slider" aria-label="Zdjęcia z realizacji infrastruktury IT">
-              <div class="hero-slide active">
-                <img src="images/hero-card-pic1.jpeg" alt="Panel monitoringu serwerów i usług" />
+            <div class="hero-meta">
+              <div>
+                <strong>10+ lat doświadczenia</strong>
+                w projektach dla różnych branż
               </div>
-              <div class="hero-slide">
-                <img src="images/hero-card-pic2.jpeg" alt="Schemat infrastruktury serwerowej" />
-              </div>
-              <div class="hero-slide">
-                <img src="images/hero-card-pic3.jpeg" alt="Widok pulpitu administracyjnego systemów IT" />
-              </div>
-
-              <button class="hero-slider-nav hero-slider-prev" type="button" aria-label="Poprzednie zdjęcie">‹</button>
-              <button class="hero-slider-nav hero-slider-next" type="button" aria-label="Następne zdjęcie">›</button>
-
-              <div class="hero-slider-dots" role="tablist" aria-label="Wybierz zdjęcie">
-                <button type="button" class="hero-slider-dot active" data-hero-slide-dot="0" aria-label="Zdjęcie 1"></button>
-                <button type="button" class="hero-slider-dot" data-hero-slide-dot="1" aria-label="Zdjęcie 2"></button>
-                <button type="button" class="hero-slider-dot" data-hero-slide-dot="2" aria-label="Zdjęcie 3"></button>
+              <div>
+                <strong>24/7</strong>
+                podejście nastawione na dostępność i bezpieczeństwo
               </div>
             </div>
           </div>
-        </aside>
+
+          <aside class="hero-card" aria-label="Podgląd współpracy IT">
+            <div class="hero-card-blur"></div>
+            <div class="hero-card-inner">
+              <div>
+                <div class="hero-card-header">Obszary specjalizacji</div>
+                <div class="hero-card-title">Stabilna infrastruktura IT</div>
+                <p class="hero-card-desc">
+                  Projektuję i utrzymuję środowiska serwerowe, automatyzuję powtarzalne zadania oraz dbam o bezpieczeństwo
+                  kluczowych systemów w Twojej organizacji.
+                </p>
+                <div class="hero-card-tags">
+                  <span class="pill">Administracja Linux</span>
+                  <span class="pill">Automatyzacja / DevOps</span>
+                  <span class="pill">Monitoring i logi</span>
+                  <span class="pill">Bezpieczeństwo</span>
+                </div>
+                <div class="hero-stats" style="margin-top: 1rem;">
+                  <div class="stat">
+                    <strong>Monitoring</strong>
+                    ELK / Prometheus / Grafana dopasowane do Twoich systemów
+                  </div>
+                  <div class="stat">
+                    <strong>Automatyzacja</strong>
+                    Ansible oraz CI/CD do powtarzalnych wdrożeń
+                  </div>
+                  <div class="stat">
+                    <strong>Bezpieczeństwo</strong>
+                    audyty, hardening, kopie zapasowe i procedury
+                  </div>
+                  <div class="stat">
+                    <strong>Wsparcie</strong>
+                    doradztwo przy rozwoju i migracjach środowiska
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
