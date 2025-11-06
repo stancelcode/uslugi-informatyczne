@@ -9,6 +9,14 @@
     content="Specjalista IT w administracji systemów Linux, automatyzacji (DevOps), monitoringu i bezpieczeństwie infrastruktury dla firm."
   />
   <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome do ikon -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
   <header>
@@ -65,6 +73,7 @@
   <main>
     <!-- HERO -->
     <section class="hero">
+      <div class="hero-bg-grid" aria-hidden="true"></div>
       <div class="container">
         <div class="badge">
           <span class="badge-dot"></span>
@@ -105,17 +114,27 @@
             </p>
             <div class="hero-actions">
               <button class="btn btn-primary" data-scroll-to="#kontakt">
+                <i class="fa-solid fa-comments icon-left" aria-hidden="true"></i>
                 Porozmawiajmy o Twojej infrastrukturze
               </button>
-              <button class="btn btn-outline" data-scroll-to="#oferta">Zobacz usługi</button>
+              <button class="btn btn-outline" data-scroll-to="#oferta">
+                <i class="fa-solid fa-list-check icon-left" aria-hidden="true"></i>
+                Zobacz usługi
+              </button>
             </div>
             <div class="hero-meta">
               <div>
-                <strong>10+ lat doświadczenia</strong>
+                <strong>
+                  <i class="fa-solid fa-briefcase icon-left" aria-hidden="true"></i>
+                  10+ lat doświadczenia
+                </strong>
                 w projektach dla różnych branż
               </div>
               <div>
-                <strong>24/7</strong>
+                <strong>
+                  <i class="fa-solid fa-shield-heart icon-left" aria-hidden="true"></i>
+                  24/7
+                </strong>
                 podejście nastawione na dostępność i bezpieczeństwo
               </div>
             </div>
@@ -126,34 +145,37 @@
             <div class="hero-card-inner">
               <div>
                 <div class="hero-card-header">Obszary specjalizacji</div>
-                <div class="hero-card-title">Stabilna infrastruktura IT</div>
+                <div class="hero-card-title">
+                  <i class="fa-solid fa-network-wired icon-left" aria-hidden="true"></i>
+                  Stabilna infrastruktura IT
+                </div>
                 <p class="hero-card-desc">
                   Projektuję i utrzymuję środowiska serwerowe, automatyzuję powtarzalne zadania oraz dbam o bezpieczeństwo
                   kluczowych systemów w Twojej organizacji.
                 </p>
                 <div class="hero-card-tags">
-                  <span class="pill">Administracja Linux</span>
-                  <span class="pill">Automatyzacja / DevOps</span>
-                  <span class="pill">Monitoring i logi</span>
-                  <span class="pill">Bezpieczeństwo</span>
+                  <span class="pill"><i class="fa-brands fa-linux"></i> Administracja Linux</span>
+                  <span class="pill"><i class="fa-solid fa-gears"></i> Automatyzacja / DevOps</span>
+                  <span class="pill"><i class="fa-solid fa-chart-line"></i> Monitoring i logi</span>
+                  <span class="pill"><i class="fa-solid fa-shield-halved"></i> Bezpieczeństwo</span>
                 </div>
-                <div class="hero-stats" style="margin-top: 1rem;">
-                  <div class="stat">
-                    <strong>Monitoring</strong>
-                    ELK / Prometheus / Grafana dopasowane do Twoich systemów
-                  </div>
-                  <div class="stat">
-                    <strong>Automatyzacja</strong>
-                    Ansible oraz CI/CD do powtarzalnych wdrożeń
-                  </div>
-                  <div class="stat">
-                    <strong>Bezpieczeństwo</strong>
-                    audyty, hardening, kopie zapasowe i procedury
-                  </div>
-                  <div class="stat">
-                    <strong>Wsparcie</strong>
-                    doradztwo przy rozwoju i migracjach środowiska
-                  </div>
+              </div>
+              <div class="hero-stats">
+                <div class="stat">
+                  <strong><i class="fa-solid fa-chart-pie icon-left"></i>Monitoring</strong>
+                  ELK / Prometheus / Grafana dopasowane do Twoich systemów
+                </div>
+                <div class="stat">
+                  <strong><i class="fa-solid fa-rocket icon-left"></i>Automatyzacja</strong>
+                  Ansible oraz CI/CD do powtarzalnych wdrożeń
+                </div>
+                <div class="stat">
+                  <strong><i class="fa-solid fa-lock icon-left"></i>Bezpieczeństwo</strong>
+                  audyty, hardening, kopie zapasowe i procedury
+                </div>
+                <div class="stat">
+                  <strong><i class="fa-solid fa-handshake-angle icon-left"></i>Wsparcie</strong>
+                  doradztwo przy rozwoju i migracjach środowiska
                 </div>
               </div>
             </div>
@@ -168,7 +190,10 @@
         <div class="section-header">
           <div>
             <div class="section-kicker">O nas</div>
-            <h2 class="section-title">Łączymy doświadczenie z pasją do technologii</h2>
+            <h2 class="section-title">
+              <i class="fa-solid fa-users-gear icon-left" aria-hidden="true"></i>
+              Łączymy doświadczenie z pasją do technologii
+            </h2>
           </div>
           <p class="section-description">
             Pracujemy blisko biznesu – nie tylko opiekujemy się serwerami, ale projektujemy całe środowisko tak,
@@ -177,7 +202,10 @@
         </div>
         <div class="content">
           <article class="card">
-            <h3>Kim jesteśmy?</h3>
+            <h3>
+              <i class="fa-solid fa-circle-info icon-left" aria-hidden="true"></i>
+              Kim jesteśmy?
+            </h3>
             <p>
               Jesteśmy zespołem specjalistów IT, którzy łączą praktyczne doświadczenie z nowoczesnym podejściem do
               infrastruktury. Nasz cel to stabilne, bezpieczne i wydajne środowiska IT, które nie przeszkadzają
@@ -204,7 +232,10 @@
           </article>
 
           <article class="card">
-            <h3>Dlaczego warto z nami współpracować?</h3>
+            <h3>
+              <i class="fa-solid fa-star-half-stroke icon-left" aria-hidden="true"></i>
+              Dlaczego warto z nami współpracować?
+            </h3>
             <p>
               Łączymy kompetencje z obszarów administracji, DevOps i bezpieczeństwa. Nie sprzedajemy jednego narzędzia –
               dobieramy rozwiązania do faktycznych potrzeb Twojej organizacji.
@@ -238,7 +269,10 @@
         <div class="section-header">
           <div>
             <div class="section-kicker">Usługi</div>
-            <h2 class="section-title">Usługi IT dopasowane do Twojej infrastruktury</h2>
+            <h2 class="section-title">
+              <i class="fa-solid fa-layer-group icon-left" aria-hidden="true"></i>
+              Usługi IT dopasowane do Twojej infrastruktury
+            </h2>
           </div>
           <p class="section-description">
             Zajmujemy się projektowaniem, wdrażaniem i utrzymaniem środowisk IT. Poniżej przykładowe obszary, w których
@@ -249,7 +283,10 @@
         <div class="services-grid">
           <article class="service-card">
             <div class="service-tag">Infrastruktura</div>
-            <h3 class="service-title">Administracja serwerami i systemami</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-server service-icon" aria-hidden="true"></i>
+              Administracja serwerami i systemami
+            </h3>
             <p>
               Kompleksowa opieka nad serwerami Linux i usługami krytycznymi dla działania firmy.
             </p>
@@ -266,7 +303,10 @@
 
           <article class="service-card">
             <div class="service-tag">DevOps</div>
-            <h3 class="service-title">Automatyzacja i CI/CD</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-code-branch service-icon" aria-hidden="true"></i>
+              Automatyzacja i CI/CD
+            </h3>
             <p>
               Budowa i utrzymanie procesów automatycznych wdrożeń oraz zarządzania konfiguracją.
             </p>
@@ -283,7 +323,10 @@
 
           <article class="service-card">
             <div class="service-tag">Monitoring</div>
-            <h3 class="service-title">Monitoring i logowanie</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-chart-simple service-icon" aria-hidden="true"></i>
+              Monitoring i logowanie
+            </h3>
             <p>
               Tworzenie systemów obserwowalności opartych m.in. o ELK Stack, Prometheus i Grafanę.
             </p>
@@ -300,7 +343,10 @@
 
           <article class="service-card">
             <div class="service-tag">Security</div>
-            <h3 class="service-title">Bezpieczeństwo i audyty</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-shield-halved service-icon" aria-hidden="true"></i>
+              Bezpieczeństwo i audyty
+            </h3>
             <p>
               Analiza obecnego stanu bezpieczeństwa oraz wdrożenie praktycznych zabezpieczeń.
             </p>
@@ -317,7 +363,10 @@
 
           <article class="service-card">
             <div class="service-tag">Chmura</div>
-            <h3 class="service-title">Infrastruktura chmurowa i wirtualizacja</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-cloud service-icon" aria-hidden="true"></i>
+              Infrastruktura chmurowa i wirtualizacja
+            </h3>
             <p>
               Projektowanie środowisk w chmurze i ich integracja z istniejącą infrastrukturą.
             </p>
@@ -334,7 +383,10 @@
 
           <article class="service-card">
             <div class="service-tag">Konsultacje</div>
-            <h3 class="service-title">Doradztwo i wsparcie IT</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-user-tie service-icon" aria-hidden="true"></i>
+              Doradztwo i wsparcie IT
+            </h3>
             <p>
               Pomoc przy planowaniu rozwoju infrastruktury oraz przy konkretnych wyzwaniach technicznych.
             </p>
@@ -356,7 +408,10 @@
             Opisz w kilku zdaniach swoją obecną infrastrukturę – przygotuję propozycję pierwszych kroków oraz możliwych
             usprawnień.
           </div>
-          <button class="btn" data-scroll-to="#kontakt">Zapytaj o rekomendacje</button>
+          <button class="btn" data-scroll-to="#kontakt">
+            <i class="fa-solid fa-lightbulb icon-left" aria-hidden="true"></i>
+            Zapytaj o rekomendacje
+          </button>
         </div>
       </div>
     </section>
@@ -367,7 +422,10 @@
         <div class="section-header">
           <div>
             <div class="section-kicker">Realizacje</div>
-            <h2 class="section-title">Przykładowe projekty i wdrożenia</h2>
+            <h2 class="section-title">
+              <i class="fa-solid fa-diagram-project icon-left" aria-hidden="true"></i>
+              Przykładowe projekty i wdrożenia
+            </h2>
           </div>
           <p class="section-description">
             Przykłady projektów zrealizowanych dla klientów z różnych branż – od monitoringu infrastruktury
@@ -386,7 +444,10 @@
                 <div class="testimonial-name">Firma produkcyjna</div>
                 <div class="testimonial-role">Monitoring i logowanie</div>
               </div>
-              <div class="testimonial-badge">ELK Stack</div>
+              <div class="testimonial-badge">
+                <i class="fa-solid fa-magnifying-glass-chart icon-left" aria-hidden="true"></i>
+                ELK Stack
+              </div>
             </div>
           </article>
 
@@ -400,7 +461,10 @@
                 <div class="testimonial-name">Sektor finansowy</div>
                 <div class="testimonial-role">Automatyzacja wdrożeń</div>
               </div>
-              <div class="testimonial-badge">CI/CD</div>
+              <div class="testimonial-badge">
+                <i class="fa-solid fa-code-compare icon-left" aria-hidden="true"></i>
+                CI/CD
+              </div>
             </div>
           </article>
 
@@ -414,7 +478,10 @@
                 <div class="testimonial-name">Firma usługowa</div>
                 <div class="testimonial-role">Infrastruktura chmurowa</div>
               </div>
-              <div class="testimonial-badge">Chmura</div>
+              <div class="testimonial-badge">
+                <i class="fa-solid fa-cloud-arrow-up icon-left" aria-hidden="true"></i>
+                Chmura
+              </div>
             </div>
           </article>
         </div>
@@ -427,7 +494,10 @@
         <div class="section-header">
           <div>
             <div class="section-kicker">Technologie</div>
-            <h2 class="section-title">Stawiamy na sprawdzone narzędzia</h2>
+            <h2 class="section-title">
+              <i class="fa-solid fa-microchip icon-left" aria-hidden="true"></i>
+              Stawiamy na sprawdzone narzędzia
+            </h2>
           </div>
           <p class="section-description">
             Korzystamy z nowoczesnych, ale stabilnych rozwiązań – zarówno open source, jak i komercyjnych – dobieranych
@@ -441,6 +511,14 @@
             <p>
               W zależności od projektu dobieramy narzędzia tak, aby ułatwić rozwój, utrzymanie i skalowanie systemów.
             </p>
+            <div class="tech-logos">
+              <span><i class="fa-brands fa-linux"></i> Linux</span>
+              <span><i class="fa-brands fa-docker"></i> Docker</span>
+              <span><i class="fa-solid fa-gears"></i> Ansible</span>
+              <span><i class="fa-solid fa-chart-line"></i> Grafana</span>
+              <span><i class="fa-brands fa-aws"></i> AWS</span>
+              <span><i class="fa-brands fa-microsoft"></i> Azure</span>
+            </div>
             <div class="values-grid">
               <div>
                 <strong>Linux</strong><br />
@@ -478,7 +556,10 @@
         <div class="section-header">
           <div>
             <div class="section-kicker">Zespół</div>
-            <h2 class="section-title">Ludzie stojący za projektami</h2>
+            <h2 class="section-title">
+              <i class="fa-solid fa-people-group icon-left" aria-hidden="true"></i>
+              Ludzie stojący za projektami
+            </h2>
           </div>
           <p class="section-description">
             W projekty angażujemy specjalistów z różnych obszarów – od administracji i DevOps, przez bezpieczeństwo,
@@ -489,7 +570,10 @@
         <div class="services-grid">
           <article class="service-card">
             <div class="service-tag">Founder</div>
-            <h3 class="service-title">Kamil Kaczmarczyk</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-user-gear service-icon" aria-hidden="true"></i>
+              Kamil Kaczmarczyk
+            </h3>
             <p>
               Założyciel i główny specjalista. Odpowiada za architekturę rozwiązań, administrację systemami Linux oraz
               nadzór nad projektami automatyzacji.
@@ -498,7 +582,10 @@
 
           <article class="service-card">
             <div class="service-tag">Security</div>
-            <h3 class="service-title">Specjalista ds. bezpieczeństwa</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-user-shield service-icon" aria-hidden="true"></i>
+              Specjalista ds. bezpieczeństwa
+            </h3>
             <p>
               Zajmuje się audytami bezpieczeństwa, analizą konfiguracji oraz rekomendacjami zmian zgodnych z dobrymi
               praktykami branżowymi.
@@ -507,7 +594,10 @@
 
           <article class="service-card">
             <div class="service-tag">DevOps</div>
-            <h3 class="service-title">Inżynier DevOps</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-screwdriver-wrench service-icon" aria-hidden="true"></i>
+              Inżynier DevOps
+            </h3>
             <p>
               Projektuje i utrzymuje pipeline CI/CD, automatyzuje wdrożenia i integruje narzędzia zespołów developerskich
               z infrastrukturą.
@@ -516,7 +606,10 @@
 
           <article class="service-card">
             <div class="service-tag">Monitoring</div>
-            <h3 class="service-title">Analityk danych i logów</h3>
+            <h3 class="service-title">
+              <i class="fa-solid fa-chart-column service-icon" aria-hidden="true"></i>
+              Analityk danych i logów
+            </h3>
             <p>
               Odpowiada za konfigurację systemów monitoringu oraz przygotowywanie dashboardów i raportów dla biznesu.
             </p>
@@ -531,7 +624,10 @@
         <div class="section-header">
           <div>
             <div class="section-kicker">Kontakt</div>
-            <h2 class="section-title">Porozmawiajmy o Twoim środowisku IT</h2>
+            <h2 class="section-title">
+              <i class="fa-solid fa-envelope-open-text icon-left" aria-hidden="true"></i>
+              Porozmawiajmy o Twoim środowisku IT
+            </h2>
           </div>
           <p class="section-description">
             Napisz kilka zdań o swojej infrastrukturze – ilu użytkowników obsługujesz, jakie systemy są kluczowe i z
@@ -541,30 +637,34 @@
 
         <div class="contact-grid">
           <aside class="contact-card">
-            <h3>Jak przygotować zapytanie?</h3>
+            <h3>
+              <i class="fa-solid fa-circle-question icon-left" aria-hidden="true"></i>
+              Jak przygotować zapytanie?
+            </h3>
             <p>
               Aby szybciej wrócić z konkretną propozycją, możesz od razu uwzględnić w wiadomości kilka informacji o
               środowisku i oczekiwaniach.
             </p>
             <div class="contact-items">
               <div>
-                <span class="label">Skala</span>
+                <span class="label"><i class="fa-solid fa-arrows-left-right icon-left" aria-hidden="true"></i>Skala</span>
                 <span>liczba serwerów / usług, kluczowe aplikacje, liczba użytkowników</span>
               </div>
               <div>
-                <span class="label">Obszar</span>
+                <span class="label"><i class="fa-solid fa-layer-group icon-left" aria-hidden="true"></i>Obszar</span>
                 <span>administracja, automatyzacja, monitoring, bezpieczeństwo itp.</span>
               </div>
               <div>
-                <span class="label">Cel</span>
+                <span class="label"><i class="fa-solid fa-bullseye icon-left" aria-hidden="true"></i>Cel</span>
                 <span>np. stabilizacja, migracja, redukcja kosztów, wdrożenie monitoringu</span>
               </div>
               <div>
-                <span class="label">Pilność</span>
+                <span class="label"><i class="fa-solid fa-fire icon-left" aria-hidden="true"></i>Pilność</span>
                 <span>projekt planowany czy problem wymagający szybkiej reakcji</span>
               </div>
             </div>
             <p class="contact-hint">
+              <i class="fa-solid fa-circle-exclamation icon-left" aria-hidden="true"></i>
               Tutaj możesz dodać swoje dane kontaktowe (e-mail, telefon, adres), jeśli chcesz je wyświetlać klientom.
             </p>
           </aside>
@@ -572,25 +672,37 @@
           <div>
             <form id="contactForm" action="send_form.php" method="post" novalidate>
               <div class="field">
-                <label for="name">Imię i nazwisko<span class="required">*</span></label>
+                <label for="name">
+                  <i class="fa-solid fa-user icon-left" aria-hidden="true"></i>
+                  Imię i nazwisko<span class="required">*</span>
+                </label>
                 <input type="text" id="name" name="name" placeholder="np. Jan Kowalski" required />
                 <div class="error" id="errorName">Podaj swoje imię i nazwisko.</div>
               </div>
 
               <div class="field">
-                <label for="email">Adres e-mail<span class="required">*</span></label>
+                <label for="email">
+                  <i class="fa-solid fa-envelope icon-left" aria-hidden="true"></i>
+                  Adres e-mail<span class="required">*</span>
+                </label>
                 <input type="email" id="email" name="email" placeholder="np. kontakt@firma.pl" required />
                 <div class="error" id="errorEmail">Podaj poprawny adres e-mail.</div>
               </div>
 
               <div class="field">
-                <label for="phone">Telefon</label>
+                <label for="phone">
+                  <i class="fa-solid fa-phone icon-left" aria-hidden="true"></i>
+                  Telefon
+                </label>
                 <input type="tel" id="phone" name="phone" placeholder="np. +48 600 000 000" />
                 <small>Opcjonalnie – jeśli wolisz, byśmy zadzwonili.</small>
               </div>
 
               <div class="field">
-                <label for="message">Opisz krótko swoje środowisko IT<span class="required">*</span></label>
+                <label for="message">
+                  <i class="fa-solid fa-note-sticky icon-left" aria-hidden="true"></i>
+                  Opisz krótko swoje środowisko IT<span class="required">*</span>
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -601,7 +713,10 @@
               </div>
 
               <div class="form-footer">
-                <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-paper-plane icon-left" aria-hidden="true"></i>
+                  Wyślij zapytanie
+                </button>
                 <p>
                   Wysyłając formularz, wyrażasz zgodę na kontakt w celu omówienia szczegółów współpracy.
                 </p>

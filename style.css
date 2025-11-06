@@ -63,6 +63,11 @@ a {
   padding: 0 1.5rem;
 }
 
+/* pomocnicze do ikon */
+.icon-left {
+  margin-right: 0.4rem;
+}
+
 /* NAVBAR */
 header {
   position: sticky;
@@ -187,8 +192,11 @@ nav a:hover::after {
   background: rgba(15, 23, 42, 0.6);
 }
 
+/* jaśniejsze przyciski w jasnym motywie */
 :root[data-theme="light"] .btn-outline {
-  background: rgba(249, 250, 251, 0.9);
+  background: #e0ecff;
+  color: #0f172a;
+  border-color: #93c5fd;
 }
 
 .btn-outline:hover {
@@ -197,7 +205,7 @@ nav a:hover::after {
 }
 
 :root[data-theme="light"] .btn-outline:hover {
-  background: #e5e7eb;
+  background: #d4e3ff;
 }
 
 .btn span.chevron {
@@ -243,7 +251,22 @@ nav a:hover::after {
 
 /* HERO */
 .hero {
+  position: relative;
   padding: 4.2rem 0 3.4rem;
+  overflow: hidden;
+}
+
+/* delikatna siatka w tle hero */
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .hero-grid {
@@ -609,6 +632,10 @@ section {
   position: relative;
   overflow: hidden;
   font-size: 0.88rem;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
 }
 
 .service-card::before {
@@ -625,6 +652,12 @@ section {
   opacity: 1;
 }
 
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.75);
+  border-color: rgba(129, 140, 248, 0.9);
+}
+
 .service-tag {
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -636,6 +669,13 @@ section {
 .service-title {
   font-size: 1rem;
   margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.service-icon {
+  font-size: 1.1rem;
 }
 
 .service-list {
@@ -682,6 +722,10 @@ section {
   font-size: 0.86rem;
   position: relative;
   overflow: hidden;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
 }
 
 .testimonial::before {
@@ -722,6 +766,36 @@ section {
   border: 1px solid rgba(148, 163, 184, 0.45);
   background: rgba(15, 23, 42, 0.9);
   white-space: nowrap;
+}
+
+.testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.75);
+  border-color: rgba(129, 140, 248, 0.9);
+}
+
+/* LOGOTYPY / IKONY TECHNOLOGII */
+.tech-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.8rem 0 1rem;
+  font-size: 0.85rem;
+}
+
+.tech-logos span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+:root[data-theme="light"] .tech-logos span {
+  background: #eef2ff;
+  border-color: #c4b5fd;
 }
 
 /* CTA PAS */
@@ -806,8 +880,10 @@ section {
 }
 
 .contact-items span.label {
-  display: inline-block;
-  width: 4.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 4.5rem;
   color: var(--text-muted);
 }
 
