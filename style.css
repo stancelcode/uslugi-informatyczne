@@ -712,28 +712,39 @@ section {
 }
 
 /* LOGOTYPY / IKONY TECHNOLOGII */
-.tech-logos {
+/* Rząd graficznych logotypów (Linux, Ansible, Docker, Python, Git) */
+.tech-icons-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 0.8rem 0 1rem;
-  font-size: 0.85rem;
-}
-
-.tech-logos span {
-  display: inline-flex;
+  justify-content: center;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  background: rgba(15, 23, 42, 0.9);
+  flex-wrap: wrap;
+  gap: 2.4rem;
+  margin: 0.5rem 0 2.2rem;
 }
 
-:root[data-theme="light"] .tech-logos span {
-  background: #eef2ff;
-  border-color: #c4b5fd;
+.tech-icons-row img {
+  max-height: 64px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(15, 23, 42, 0.25));
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    opacity 0.2s ease;
 }
+
+/* delikatny efekt hover */
+.tech-icons-row img:hover {
+  transform: translateY(-3px) scale(1.03);
+  filter: drop-shadow(0 8px 18px rgba(15, 23, 42, 0.35));
+  opacity: 0.95;
+}
+
+/* w jasnym motywie cień trochę jaśniejszy */
+:root[data-theme="light"] .tech-icons-row img {
+  filter: drop-shadow(0 4px 10px rgba(148, 163, 184, 0.45));
+}
+
 
 /* CTA PAS */
 .cta-strip {
