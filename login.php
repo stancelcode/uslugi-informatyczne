@@ -43,12 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <main>
     <section class="hero" style="padding-top:3rem;">
-      <div class="container">
-        <div class="card" style="max-width:420px;margin:0 auto;">
-          <h2 style="margin-bottom:0.8rem;">
-            <i class="fa-solid fa-right-to-bracket icon-left"></i>
-            Logowanie do panelu
-          </h2>
+      <div class="container" style="max-width:480px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <h1 style="font-size:1.4rem;">Logowanie do panelu</h1>
+          <a href="/" class="btn btn-outline" style="white-space:nowrap;">
+            <i class="fa-solid fa-house icon-left"></i>
+            Strona główna
+          </a>
+        </div>
+
+        <div class="card">
           <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:1rem;">
             Zaloguj się, aby przejść do panelu administracyjnego lub strefy klienta.
           </p>

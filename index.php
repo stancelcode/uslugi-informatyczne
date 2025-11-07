@@ -1,3 +1,20 @@
+<?php
+require_once __DIR__ . '/db.php';
+
+$path = $_SERVER['REQUEST_URI'] ?? '/';
+$ip = $_SERVER['REMOTE_ADDR'] ?? null;
+$ua = $_SERVER['HTTP_USER_AGENT'] ?? null;
+
+$stmt = $pdo->prepare("
+  INSERT INTO page_views (path, ip, user_agent)
+  VALUES (:path, :ip, :ua)
+");
+$stmt->execute([
+  'path' => $path,
+  'ip'   => $ip,
+  'ua'   => $ua,
+]);
+?>
 <!DOCTYPE html>
 <html lang="pl" data-theme="dark">
 <head>
@@ -19,6 +36,7 @@
   />
 </head>
 <body>
+
   <header>
     <div class="container nav">
       <div class="logo">

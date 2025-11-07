@@ -23,6 +23,16 @@ $docs = $stmt->fetchAll();
   />
 </head>
 <body>
+  <!-- Pływający przycisk trybu dzień/noc -->
+  <button
+    class="btn btn-outline theme-toggle theme-toggle-floating"
+    type="button"
+    aria-label="Przełącz tryb jasny/ciemny"
+    title="Przełącz tryb jasny/ciemny"
+  >
+    <span class="theme-icon">☀️</span>
+  </button>
+
   <header>
     <div class="container nav">
       <div class="logo">
@@ -33,8 +43,12 @@ $docs = $stmt->fetchAll();
         <span style="font-size:0.85rem;color:var(--text-muted);">
           Zalogowany: <?php echo htmlspecialchars($user['full_name'], ENT_QUOTES, 'UTF-8'); ?>
         </span>
-        <a href="/" class="btn btn-outline">Strona główna</a>
-        <a href="/logout.php" class="btn btn-primary">Wyloguj</a>
+        <a href="/" class="btn btn-outline">
+          <i class="fa-solid fa-house icon-left"></i> Strona główna
+        </a>
+        <a href="/logout.php" class="btn btn-primary">
+          <i class="fa-solid fa-right-from-bracket icon-left"></i> Wyloguj
+        </a>
       </div>
     </div>
   </header>
@@ -51,8 +65,7 @@ $docs = $stmt->fetchAll();
             </h2>
           </div>
           <p class="section-description">
-            W tym miejscu możesz pobrać dokumentację, raporty oraz inne materiały
-            przygotowane dla Twojej firmy.
+            W tym miejscu możesz pobrać dokumentację, raporty oraz inne materiały przygotowane dla Twojej firmy.
           </p>
         </div>
 
@@ -89,5 +102,7 @@ $docs = $stmt->fetchAll();
       </div>
     </section>
   </main>
+
+  <script src="/script.js"></script>
 </body>
 </html>
