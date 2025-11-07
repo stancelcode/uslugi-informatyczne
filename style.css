@@ -563,6 +563,39 @@ section {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.4rem;
 }
+/* Karty zespołu z avatarami */
+.team-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.45rem;
+}
+
+.team-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.5);
+}
+
+:root[data-theme="light"] .team-avatar {
+  box-shadow: 0 6px 16px rgba(148, 163, 184, 0.6);
+}
+
+.team-card .service-tag {
+  margin-bottom: 0.1rem; /* trochę bliżej nazwiska */
+}
+
+.team-card .service-title {
+  margin-bottom: 0.2rem;
+}
 
 .service-card {
   background: rgba(15, 23, 42, 0.98);
