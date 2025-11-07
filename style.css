@@ -557,6 +557,13 @@ section {
   gap: 1.4rem;
 }
 
+/* ZESPÓŁ – SIATKA 2×2 */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
 .service-card {
   background: rgba(15, 23, 42, 0.98);
   border-radius: 1rem;
@@ -702,13 +709,19 @@ section {
   animation: opinionsScroll 50s linear infinite;
 }
 
+/* zatrzymanie przesuwania opinii po najechaniu kursorem */
+.opinions-marquee:hover .opinions-track {
+  animation-play-state: paused;
+}
+
 .opinion-card {
   min-width: 260px;
   max-width: 320px;
   background: rgba(15, 23, 42, 0.96);
   border-radius: 1rem;
   border: 1px solid rgba(148, 163, 184, 0.45);
-  padding: 0.9rem 1rem;
+  /* więcej przestrzeni w środku */
+  padding: 1.15rem 1.35rem;
   font-size: 0.86rem;
   color: var(--text-muted);
 }
@@ -1061,7 +1074,8 @@ footer {
   }
 
   .services-grid,
-  .testimonials-grid {
+  .testimonials-grid,
+  .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1103,7 +1117,8 @@ footer {
 
   .services-grid,
   .testimonials-grid,
-  .values-grid {
+  .values-grid,
+  .team-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
