@@ -31,6 +31,7 @@
           <li><a href="#onas">O nas</a></li>
           <li><a href="#oferta">Usługi</a></li>
           <li><a href="#referencje">Realizacje</a></li>
+          <li><a href="#opinie">Opinie</a></li>
           <li><a href="#technologie">Technologie</a></li>
           <li><a href="#zespol">Zespół</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
@@ -41,14 +42,6 @@
         <button class="btn btn-outline" data-scroll-to="#oferta">Oferta</button>
         <button class="btn btn-primary" data-scroll-to="#kontakt">
           Wyceń projekt <span class="chevron">→</span>
-        </button>
-        <button
-          class="btn btn-outline theme-toggle"
-          type="button"
-          aria-label="Przełącz tryb jasny/ciemny"
-          title="Przełącz tryb jasny/ciemny"
-        >
-          <span class="theme-icon">☀️</span>
         </button>
       </div>
 
@@ -61,25 +54,26 @@
       <a href="#onas">O nas</a>
       <a href="#oferta">Usługi</a>
       <a href="#referencje">Realizacje</a>
+      <a href="#opinie">Opinie</a>
       <a href="#technologie">Technologie</a>
       <a href="#zespol">Zespół</a>
       <a href="#kontakt">Kontakt</a>
-
-      <!-- przełącznik motywu w menu mobilnym -->
-      <button
-        class="btn btn-outline theme-toggle"
-        type="button"
-        aria-label="Przełącz tryb jasny/ciemny"
-        title="Przełącz tryb jasny/ciemny"
-      >
-        <span class="theme-icon">☀️</span>
-      </button>
 
       <button class="btn btn-primary" data-scroll-to="#kontakt" style="width:max-content;margin-top:0.2rem;">
         Bezpłatna konsultacja
       </button>
     </div>
   </header>
+
+  <!-- PŁYWAJĄCY PRZYCISK TRYBU D/N W PRAWYM GÓRNYM ROGU -->
+  <button
+    class="btn btn-outline theme-toggle theme-toggle-floating"
+    type="button"
+    aria-label="Przełącz tryb jasny/ciemny"
+    title="Przełącz tryb jasny/ciemny"
+  >
+    <span class="theme-icon">☀️</span>
+  </button>
 
   <main>
     <!-- HERO -->
@@ -485,6 +479,119 @@
       </div>
     </section>
 
+    <!-- OPINIE KLIENTÓW – PRZESUWAJĄCE SIĘ OKIENKA -->
+    <section id="opinie">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <div class="section-kicker">Opinie</div>
+            <h2 class="section-title">
+              <i class="fa-solid fa-comment-dots icon-left" aria-hidden="true"></i>
+              Co mówią klienci o współpracy
+            </h2>
+          </div>
+          <p class="section-description">
+            Kilka przykładowych opinii od klientów, z którymi realizowaliśmy projekty związane z infrastrukturą,
+            monitoringiem i automatyzacją.
+          </p>
+        </div>
+
+        <div class="opinions-marquee reveal" data-reveal-delay="80">
+          <div class="opinions-track">
+            <!-- ZESTAW 1 -->
+            <article class="opinion-card">
+              <p>
+                „Po wdrożeniu monitoringu i automatyzacji mamy pełen obraz tego, co dzieje się w naszych systemach.
+                Reakcja na problemy jest zdecydowanie szybsza.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Anna K.</span>
+                <span class="opinion-role">IT Manager, firma produkcyjna</span>
+              </div>
+            </article>
+
+            <article class="opinion-card">
+              <p>
+                „Kamil pomógł nam zaprojektować i wdrożyć pipeline CI/CD. Zespół developmentu wreszcie może skupić się
+                na kodzie, a wdrożenia są przewidywalne.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Marek P.</span>
+                <span class="opinion-role">Head of Development, fintech</span>
+              </div>
+            </article>
+
+            <article class="opinion-card">
+              <p>
+                „Migracja do chmury była dla nas dużym wyzwaniem. Dzięki dobrze zaplanowanej architekturze obyło się bez
+                przestojów i zaskoczeń kosztowych.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Joanna L.</span>
+                <span class="opinion-role">COO, firma usługowa</span>
+              </div>
+            </article>
+
+            <article class="opinion-card">
+              <p>
+                „Audyt bezpieczeństwa pokazał nam, jakie mamy słabe punkty. Po wdrożeniu zaleceń śpimy spokojniej –
+                szczególnie dział finansowy.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Tomasz R.</span>
+                <span class="opinion-role">CFO, sektor finansowy</span>
+              </div>
+            </article>
+
+            <!-- ZESTAW 2 – duplikat do płynnej pętli -->
+            <article class="opinion-card">
+              <p>
+                „Po wdrożeniu monitoringu i automatyzacji mamy pełen obraz tego, co dzieje się w naszych systemach.
+                Reakcja na problemy jest zdecydowanie szybsza.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Anna K.</span>
+                <span class="opinion-role">IT Manager, firma produkcyjna</span>
+              </div>
+            </article>
+
+            <article class="opinion-card">
+              <p>
+                „Kamil pomógł nam zaprojektować i wdrożyć pipeline CI/CD. Zespół developmentu wreszcie może skupić się
+                na kodzie, a wdrożenia są przewidywalne.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Marek P.</span>
+                <span class="opinion-role">Head of Development, fintech</span>
+              </div>
+            </article>
+
+            <article class="opinion-card">
+              <p>
+                „Migracja do chmury była dla nas dużym wyzwaniem. Dzięki dobrze zaplanowanej architekturze obyło się bez
+                przestojów i zaskoczeń kosztowych.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Joanna L.</span>
+                <span class="opinion-role">COO, firma usługowa</span>
+              </div>
+            </article>
+
+            <article class="opinion-card">
+              <p>
+                „Audyt bezpieczeństwa pokazał nam, jakie mamy słabe punkty. Po wdrożeniu zaleceń śpimy spokojniej –
+                szczególnie dział finansowy.”
+              </p>
+              <div class="opinion-meta">
+                <span class="opinion-name">Tomasz R.</span>
+                <span class="opinion-role">CFO, sektor finansowy</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- TECHNOLOGIE -->
     <section id="technologie">
       <div class="container">
@@ -499,7 +606,6 @@
           </p>
         </div>
 
-        <!-- Wiersz z logotypami na środku -->
         <div class="tech-icons-row reveal">
           <img src="images/linux-original.svg" alt="Linux" />
           <img src="images/ansible-original.svg" alt="Ansible" />
@@ -508,7 +614,6 @@
           <img src="images/git-original.svg" alt="Git" />
         </div>
 
-        <!-- Karta z opisami technologii -->
         <div class="content">
           <article class="card reveal">
             <h3>Środowisko pracy</h3>

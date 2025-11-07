@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ustaw motyw na starcie
   applyTheme(getPreferredTheme());
 
-  // obsługa kliknięcia dla wszystkich przełączników (desktop + mobile)
+  // obsługa kliknięcia dla wszystkich przełączników (tu faktycznie jeden – pływający)
   themeToggles.forEach((btn) => {
     btn.addEventListener("click", () => {
       const current = html.getAttribute("data-theme") === "light" ? "light" : "dark";
