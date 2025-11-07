@@ -1,35 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
   const html = document.documentElement;
-  const themeToggle = document.querySelector(".theme-toggle");
-  const themeIcon = themeToggle ? themeToggle.querySelector(".theme-icon") : null;
+  const themeToggles = document.querySelectorAll(".theme-toggle");
 
-  // Ustawienie motywu na podstawie localStorage
-  const storedTheme = localStorage.getItem("theme");
-  if (storedTheme === "light" || storedTheme === "dark") {
-    html.setAttribute("data-theme", storedTheme);
-  } else {
-    html.setAttribute("data-theme", "dark");
-  }
+  // --- MOTYW JASNY / CIEMNY ---
 
-  const updateThemeIcon = () => {
-    if (!themeIcon) return;
-    const current = html.getAttribute("data-theme");
-    themeIcon.textContent = current === "light" ? "🌙" : "☀️";
+  const getPreferredTheme = () => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      return storedTheme;
+    }
+    // jeśli nic nie zapisane – spróbuj dopasować do systemu
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      return "light";
+    }
+    return "dark";
   };
 
-  updateThemeIcon();
+  const updateThemeIcons = () => {
+    const current = html.getAttribute("data-theme");
+    themeToggles.forEach((btn) => {
+      const icon = btn.querySelector(".theme-icon");
+      if (!icon) return;
+      icon.textContent = current === "light" ? "🌙" : "☀️";
+    });
+  };
 
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
+  const applyTheme = (theme) => {
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    updateThemeIcons();
+  };
+
+  // ustaw motyw na starcie
+  applyTheme(getPreferredTheme());
+
+  // obsługa kliknięcia dla wszystkich przełączników (desktop + mobile)
+  themeToggles.forEach((btn) => {
+    btn.addEventListener("click", () => {
       const current = html.getAttribute("data-theme") === "light" ? "light" : "dark";
       const next = current === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-      updateThemeIcon();
+      applyTheme(next);
     });
-  }
+  });
 
-  // Smooth scroll dla przycisków z data-scroll-to
+  // --- SMOOTH SCROLL dla przycisków z data-scroll-to ---
   document.querySelectorAll("[data-scroll-to]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -48,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Mobile nav
+  // --- MOBILE NAV ---
   const navToggle = document.querySelector(".nav-toggle");
   const navMobile = document.getElementById("navMobile");
 
@@ -58,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    navMobile.querySelectorAll("a").forEach((link) => {
+    navMobile.querySelectorAll("a, button").forEach((link) => {
       link.addEventListener("click", () => {
         navMobile.classList.remove("open");
         navToggle.setAttribute("aria-expanded", "false");
@@ -66,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Walidacja formularza kontaktowego (prosta, po stronie frontu)
+  // --- WALIDACJA FORMULARZA ---
   const form = document.getElementById("contactForm");
   if (form) {
     const fieldName = document.getElementById("name");
@@ -78,8 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorMessage = document.getElementById("errorMessage");
     const successMsg = document.getElementById("formSuccess");
 
-    const emailRegex =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     form.addEventListener("submit", (e) => {
       let hasError = false;
@@ -119,13 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Rok w stopce
+  // --- ROK W STOPCE ---
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // === ANIMACJE POJAWIANIA SIĘ PRZY SCROLLU ===
+  // --- ANIMACJE POJAWIANIA SIĘ PRZY SCROLLU ---
   const revealElements = document.querySelectorAll(".reveal");
 
   if (revealElements.length > 0) {
