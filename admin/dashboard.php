@@ -6,7 +6,11 @@ global $pdo;
 
 $user = current_user();
 
-// Obsługa formularza dodawania dokumentów dla klienta
+// --- obsługa statusów wiadomości ---
+$msg_error = '';
+$msg_success = '';
+
+// --- obsługa dokumentów dla klientów ---
 $doc_error = '';
 $doc_success = '';
 
@@ -14,47 +18,92 @@ $doc_success = '';
 $clients_stmt = $pdo->query("SELECT id, full_name, email FROM users WHERE role = 'client' ORDER BY full_name");
 $clients = $clients_stmt->fetchAll();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_document') {
-    $client_id = (int)($_POST['client_id'] ?? 0);
-    $title     = trim($_POST['title'] ?? '');
+// funkcja pomocnicza do etykiet statusu
+function message_status_label(string $status): string {
+    switch ($status) {
+        case 'new':
+            return 'Oczekujące';
+        case 'in_progress':
+            return 'Do realizacji';
+        case 'done':
+            return 'Zamknięte';
+        case 'trash':
+            return 'Kosz';
+        default:
+            return $status;
+    }
+}
 
-    if ($client_id <= 0 || $title === '') {
-        $doc_error = 'Wybierz klienta i podaj tytuł dokumentu.';
-    } elseif (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
-        $doc_error = 'Wybierz plik do przesłania.';
-    } else {
-        $file      = $_FILES['file'];
-        $file_name = $file['name'];
-        $tmp_path  = $file['tmp_name'];
+// obsługa POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'] ?? '';
 
-        $allowed_ext = ['pdf','doc','docx','xls','xlsx','txt','zip','tar','gz','png','jpg','jpeg'];
-        $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+    // ZMIANA STATUSU WIADOMOŚCI
+    if ($action === 'update_msg_status') {
+        $msg_id     = (int)($_POST['msg_id'] ?? 0);
+        $new_status = $_POST['new_status'] ?? '';
 
-        if (!in_array($ext, $allowed_ext, true)) {
-            $doc_error = 'Niedozwolony typ pliku. Dozwolone: ' . implode(', ', $allowed_ext);
+        $allowed_statuses = ['new','in_progress','done','trash'];
+
+        if ($msg_id <= 0 || !in_array($new_status, $allowed_statuses, true)) {
+            $msg_error = 'Nieprawidłowe dane statusu wiadomości.';
         } else {
-            $uploadDir = __DIR__ . '/../uploads/clients/';
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0775, true);
-            }
+            $stmt = $pdo->prepare("
+                UPDATE contact_messages
+                SET status = :status
+                WHERE id = :id
+            ");
+            $stmt->execute([
+                'status' => $new_status,
+                'id'     => $msg_id,
+            ]);
+            $msg_success = 'Zaktualizowano status wiadomości.';
+        }
+    }
 
-            $newFileName = time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
-            $destPath    = $uploadDir . $newFileName;
-            $webPath     = '/uploads/clients/' . $newFileName;
+    // DODAWANIE DOKUMENTU DLA KLIENTA
+    if ($action === 'add_document') {
+        $client_id = (int)($_POST['client_id'] ?? 0);
+        $title     = trim($_POST['title'] ?? '');
 
-            if (move_uploaded_file($tmp_path, $destPath)) {
-                $stmt = $pdo->prepare("
-                    INSERT INTO client_documents (user_id, title, file_path)
-                    VALUES (:uid, :title, :path)
-                ");
-                $stmt->execute([
-                    'uid'   => $client_id,
-                    'title' => $title,
-                    'path'  => $webPath,
-                ]);
-                $doc_success = 'Dokument został dodany.';
+        if ($client_id <= 0 || $title === '') {
+            $doc_error = 'Wybierz klienta i podaj tytuł dokumentu.';
+        } elseif (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+            $doc_error = 'Wybierz plik do przesłania.';
+        } else {
+            $file      = $_FILES['file'];
+            $file_name = $file['name'];
+            $tmp_path  = $file['tmp_name'];
+
+            $allowed_ext = ['pdf','doc','docx','xls','xlsx','txt','zip','tar','gz','png','jpg','jpeg'];
+            $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+            if (!in_array($ext, $allowed_ext, true)) {
+                $doc_error = 'Niedozwolony typ pliku. Dozwolone: ' . implode(', ', $allowed_ext);
             } else {
-                $doc_error = 'Nie udało się zapisać pliku na serwerze.';
+                $uploadDir = __DIR__ . '/../uploads/clients/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0775, true);
+                }
+
+                $newFileName = time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
+                $destPath    = $uploadDir . $newFileName;
+                $webPath     = '/uploads/clients/' . $newFileName;
+
+                if (move_uploaded_file($tmp_path, $destPath)) {
+                    $stmt = $pdo->prepare("
+                        INSERT INTO client_documents (user_id, title, file_path)
+                        VALUES (:uid, :title, :path)
+                    ");
+                    $stmt->execute([
+                        'uid'   => $client_id,
+                        'title' => $title,
+                        'path'  => $webPath,
+                    ]);
+                    $doc_success = 'Dokument został dodany.';
+                } else {
+                    $doc_error = 'Nie udało się zapisać pliku na serwerze.';
+                }
             }
         }
     }
@@ -70,7 +119,8 @@ $total_messages      = $total_msgs_stmt->fetch()['cnt'] ?? 0;
 $total_views_stmt    = $pdo->query("SELECT COUNT(*) AS cnt FROM page_views");
 $total_views         = $total_views_stmt->fetch()['cnt'] ?? 0;
 
-$last_messages_stmt  = $pdo->query("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5");
+// Ostatnie wiadomości – pokazujemy wszystkie statusy, najnowsze pierwsze
+$last_messages_stmt  = $pdo->query("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 20");
 $last_messages       = $last_messages_stmt->fetchAll();
 
 $docs_stmt           = $pdo->query("
@@ -166,6 +216,18 @@ $client_docs         = $docs_stmt->fetchAll();
         <div class="content" style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.1fr);gap:1.5rem;">
           <article class="card">
             <h3><i class="fa-solid fa-inbox icon-left"></i>Ostatnie wiadomości kontaktowe</h3>
+
+            <?php if ($msg_error): ?>
+              <p style="color:#f97316;font-size:0.85rem;margin-top:0.5rem;">
+                <?php echo htmlspecialchars($msg_error, ENT_QUOTES, 'UTF-8'); ?>
+              </p>
+            <?php endif; ?>
+            <?php if ($msg_success): ?>
+              <p style="color:#22c55e;font-size:0.85rem;margin-top:0.5rem;">
+                <?php echo htmlspecialchars($msg_success, ENT_QUOTES, 'UTF-8'); ?>
+              </p>
+            <?php endif; ?>
+
             <?php if (!$last_messages): ?>
               <p>Brak wiadomości w bazie.</p>
             <?php else: ?>
@@ -180,9 +242,36 @@ $client_docs         = $docs_stmt->fetchAll();
                     <br>
                     <small><?php echo htmlspecialchars($msg['created_at'], ENT_QUOTES, 'UTF-8'); ?></small>
                     <br>
-                    <span style="font-size:0.85rem;">
+                    <span style="font-size:0.85rem;display:block;margin-top:0.25rem;">
                       <?php echo nl2br(htmlspecialchars($msg['message'], ENT_QUOTES, 'UTF-8')); ?>
                     </span>
+
+                    <div style="margin-top:0.35rem;font-size:0.8rem;">
+                      Status:
+                      <strong>
+                        <?php echo htmlspecialchars(message_status_label($msg['status'] ?? 'new'), ENT_QUOTES, 'UTF-8'); ?>
+                      </strong>
+                    </div>
+
+                    <form method="post"
+                          style="margin-top:0.35rem;display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center;">
+                      <input type="hidden" name="action" value="update_msg_status">
+                      <input type="hidden" name="msg_id" value="<?php echo (int)$msg['id']; ?>">
+
+                      <select name="new_status"
+                              style="border-radius:999px;border:1px solid rgba(148,163,184,0.6);padding:0.25rem 0.6rem;background:rgba(15,23,42,0.9);color:var(--text);font-size:0.78rem;">
+                        <option value="new"        <?php echo ($msg['status']==='new'?'selected':''); ?>>Oczekujące</option>
+                        <option value="in_progress"<?php echo ($msg['status']==='in_progress'?'selected':''); ?>>Do realizacji</option>
+                        <option value="done"       <?php echo ($msg['status']==='done'?'selected':''); ?>>Zamknięte</option>
+                        <option value="trash"      <?php echo ($msg['status']==='trash'?'selected':''); ?>>Kosz</option>
+                      </select>
+
+                      <button type="submit"
+                              class="btn btn-outline"
+                              style="padding:0.25rem 0.7rem;font-size:0.78rem;">
+                        Zapisz
+                      </button>
+                    </form>
                   </li>
                 <?php endforeach; ?>
               </ul>

@@ -1,10 +1,11 @@
 <?php
-require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/auth.php';   // auth.php wczyta też db.php
 
 $path = $_SERVER['REQUEST_URI'] ?? '/';
 $ip = $_SERVER['REMOTE_ADDR'] ?? null;
 $ua = $_SERVER['HTTP_USER_AGENT'] ?? null;
 
+global $pdo;
 $stmt = $pdo->prepare("
   INSERT INTO page_views (path, ip, user_agent)
   VALUES (:path, :ip, :ua)
@@ -14,10 +15,13 @@ $stmt->execute([
   'ip'   => $ip,
   'ua'   => $ua,
 ]);
+
+$currentUser = current_user();
 ?>
 <!DOCTYPE html>
 <html lang="pl" data-theme="dark">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Usługi Informatyczne Kamil Kaczmarczyk – Specjalista IT</title>
@@ -57,12 +61,25 @@ $stmt->execute([
         </ul>
       </nav>
 
-      <div class="nav-actions">
-        <button class="btn btn-outline" data-scroll-to="#oferta">Oferta</button>
-        <button class="btn btn-primary" data-scroll-to="#kontakt">
-          Wyceń projekt <span class="chevron">→</span>
-        </button>
-      </div>
+<div class="nav-actions">
+  <?php if ($currentUser && $currentUser['role'] === 'admin'): ?>
+    <a href="/admin/dashboard.php" class="btn btn-outline">
+      <i class="fa-solid fa-gauge-high icon-left"></i>
+      Panel admina
+    </a>
+  <?php elseif ($currentUser && $currentUser['role'] === 'client'): ?>
+    <a href="/client/dashboard.php" class="btn btn-outline">
+      <i class="fa-solid fa-folder-shield icon-left"></i>
+      Panel klienta
+    </a>
+  <?php endif; ?>
+
+  <button class="btn btn-outline" data-scroll-to="#oferta">Oferta</button>
+  <button class="btn btn-primary" data-scroll-to="#kontakt">
+    Wyceń projekt <span class="chevron">→</span>
+  </button>
+</div>
+
 
       <button class="nav-toggle" aria-label="Otwórz menu" aria-expanded="false">
         <span></span><span></span><span></span>
