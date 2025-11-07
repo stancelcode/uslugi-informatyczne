@@ -34,6 +34,13 @@ function message_status_label(string $status): string {
     }
 }
 
+// obsługa filtrów (GET)
+$statusFilter = $_GET['filter_status'] ?? 'all';
+$allowedFilter = ['all','new','in_progress','done','trash'];
+if (!in_array($statusFilter, $allowedFilter, true)) {
+    $statusFilter = 'all';
+}
+
 // obsługa POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -58,6 +65,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'id'     => $msg_id,
             ]);
             $msg_success = 'Zaktualizowano status wiadomości.';
+        }
+    }
+
+    // TRWAŁE USUNIĘCIE WIADOMOŚCI (tylko jeśli jest w Koszu)
+    if ($action === 'delete_msg') {
+        $msg_id = (int)($_POST['msg_id'] ?? 0);
+
+        if ($msg_id <= 0) {
+            $msg_error = 'Nieprawidłowe ID wiadomości do usunięcia.';
+        } else {
+            // usuwamy tylko, jeśli wiadomość jest w statusie "trash"
+            $stmt = $pdo->prepare("DELETE FROM contact_messages WHERE id = :id AND status = 'trash' LIMIT 1");
+            $stmt->execute(['id' => $msg_id]);
+
+            if ($stmt->rowCount() > 0) {
+                $msg_success = 'Wiadomość została trwale usunięta.';
+            } else {
+                $msg_error = 'Można trwale usunąć tylko wiadomości w statusie „Kosz”.';
+            }
         }
     }
 
@@ -119,9 +145,14 @@ $total_messages      = $total_msgs_stmt->fetch()['cnt'] ?? 0;
 $total_views_stmt    = $pdo->query("SELECT COUNT(*) AS cnt FROM page_views");
 $total_views         = $total_views_stmt->fetch()['cnt'] ?? 0;
 
-// Ostatnie wiadomości – pokazujemy wszystkie statusy, najnowsze pierwsze
-$last_messages_stmt  = $pdo->query("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 20");
-$last_messages       = $last_messages_stmt->fetchAll();
+// Pobranie wiadomości z uwzględnieniem filtra
+if ($statusFilter === 'all') {
+    $last_messages_stmt  = $pdo->query("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 50");
+} else {
+    $last_messages_stmt  = $pdo->prepare("SELECT * FROM contact_messages WHERE status = :status ORDER BY created_at DESC LIMIT 50");
+    $last_messages_stmt->execute(['status' => $statusFilter]);
+}
+$last_messages = $last_messages_stmt->fetchAll();
 
 $docs_stmt           = $pdo->query("
     SELECT d.*, u.full_name
@@ -228,11 +259,34 @@ $client_docs         = $docs_stmt->fetchAll();
               </p>
             <?php endif; ?>
 
+            <!-- FILTR STATUSU (GET) -->
+            <form method="get" style="margin-top:0.8rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+              <label style="font-size:0.85rem;">
+                Filtruj według statusu:
+                <select name="filter_status" class="status-select" onchange="this.form.submit()">
+                  <option value="all"         <?php echo $statusFilter==='all'?'selected':''; ?>>Wszystkie</option>
+                  <option value="new"         <?php echo $statusFilter==='new'?'selected':''; ?>>Oczekujące</option>
+                  <option value="in_progress" <?php echo $statusFilter==='in_progress'?'selected':''; ?>>Do realizacji</option>
+                  <option value="done"        <?php echo $statusFilter==='done'?'selected':''; ?>>Zamknięte</option>
+                  <option value="trash"       <?php echo $statusFilter==='trash'?'selected':''; ?>>Kosz</option>
+                </select>
+              </label>
+
+              <?php if ($statusFilter !== 'all'): ?>
+                <a href="/admin/dashboard.php"
+                   class="btn btn-outline"
+                   style="padding:0.25rem 0.7rem;font-size:0.78rem;">
+                  Wyczyść filtr
+                </a>
+              <?php endif; ?>
+            </form>
+
             <?php if (!$last_messages): ?>
-              <p>Brak wiadomości w bazie.</p>
+              <p style="margin-top:0.8rem;">Brak wiadomości dla wybranego filtra.</p>
             <?php else: ?>
               <ul style="list-style:none;margin-top:0.8rem;padding-left:0;">
                 <?php foreach ($last_messages as $msg): ?>
+                  <?php $isTrash = (($msg['status'] ?? 'new') === 'trash'); ?>
                   <li style="margin-bottom:0.75rem;border-bottom:1px solid rgba(148,163,184,0.3);padding-bottom:0.5rem;">
                     <strong><?php echo htmlspecialchars($msg['name'], ENT_QUOTES, 'UTF-8'); ?></strong>
                     (<?php echo htmlspecialchars($msg['email'], ENT_QUOTES, 'UTF-8'); ?>)
@@ -253,13 +307,13 @@ $client_docs         = $docs_stmt->fetchAll();
                       </strong>
                     </div>
 
+                    <!-- Formularz zmiany statusu -->
                     <form method="post"
                           style="margin-top:0.35rem;display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center;">
                       <input type="hidden" name="action" value="update_msg_status">
                       <input type="hidden" name="msg_id" value="<?php echo (int)$msg['id']; ?>">
 
-                      <select name="new_status"
-                              style="border-radius:999px;border:1px solid rgba(148,163,184,0.6);padding:0.25rem 0.6rem;background:rgba(15,23,42,0.9);color:var(--text);font-size:0.78rem;">
+                      <select name="new_status" class="status-select">
                         <option value="new"        <?php echo ($msg['status']==='new'?'selected':''); ?>>Oczekujące</option>
                         <option value="in_progress"<?php echo ($msg['status']==='in_progress'?'selected':''); ?>>Do realizacji</option>
                         <option value="done"       <?php echo ($msg['status']==='done'?'selected':''); ?>>Zamknięte</option>
@@ -272,6 +326,22 @@ $client_docs         = $docs_stmt->fetchAll();
                         Zapisz
                       </button>
                     </form>
+
+                    <!-- Formularz trwałego usunięcia (tylko jeśli status = Kosz) -->
+                    <?php if ($isTrash): ?>
+                      <form method="post"
+                            style="margin-top:0.3rem;"
+                            onsubmit="return confirm('Na pewno trwale usunąć tę wiadomość? Operacji nie można cofnąć.');">
+                        <input type="hidden" name="action" value="delete_msg">
+                        <input type="hidden" name="msg_id" value="<?php echo (int)$msg['id']; ?>">
+                        <button type="submit"
+                                class="btn btn-outline"
+                                style="padding:0.25rem 0.7rem;font-size:0.78rem;border-color:rgba(248,113,113,0.7);">
+                          <i class="fa-solid fa-trash-can icon-left"></i>
+                          Usuń trwale
+                        </button>
+                      </form>
+                    <?php endif; ?>
                   </li>
                 <?php endforeach; ?>
               </ul>

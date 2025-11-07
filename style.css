@@ -1169,3 +1169,21 @@ footer {
     right: 0.7rem;
   }
 }
+
+/* SELECT STATUSU WIADOMOŚCI W PANELU ADMINA */
+.status-select {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  padding: 0.25rem 0.6rem;
+  background: rgba(15, 23, 42, 0.9); /* ciemne tło w trybie nocnym */
+  color: var(--text);
+  font-size: 0.78rem;
+}
+
+/* jaśniejsze tło w trybie dziennym */
+:root[data-theme="light"] .status-select {
+  background: #e5f0ff;   /* jasny niebieski, jak w innych elementach */
+  color: #0f172a;        /* ciemny tekst */
+  border-color: #93c5fd;
+}
+
