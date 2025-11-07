@@ -1,6 +1,6 @@
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  --primary: #059669;
+  --primary-dark: #047857;
   --accent: #f97316;
 
   --bg: #0f172a;
@@ -17,8 +17,8 @@
 
 /* MOTYW JASNY – nadpisania */
 :root[data-theme="light"] {
-  --primary: #0f766e;
-  --primary-dark: #0d4f4a;
+  --primary: #16a34a;
+  --primary-dark: #22c55e;
   --accent: #7c3aed;
 
   --bg: #f3f4f6;
@@ -44,6 +44,12 @@ body {
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* wyjustowanie tekstów w treści strony */
+main p,
+main li {
+  text-align: justify;
 }
 
 img {
@@ -100,8 +106,8 @@ header {
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  background: radial-gradient(circle at 30% 20%, #f97316, #2563eb);
-  box-shadow: 0 0 18px rgba(59, 130, 246, 0.6);
+  background: radial-gradient(circle at 30% 20%, #f97316, #22c55e);
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.6);
 }
 
 :root[data-theme="light"] .logo-mark {
@@ -169,18 +175,22 @@ nav a:hover::after {
   white-space: nowrap;
 }
 
+/* główne przyciski – spójny zielono–turkusowy gradient */
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  box-shadow: 0 14px 35px rgba(37, 99, 235, 0.55);
+  color: #022c22;
+  box-shadow: 0 14px 35px rgba(5, 150, 105, 0.55);
 }
 
 :root[data-theme="light"] .btn-primary {
-  box-shadow: 0 14px 35px rgba(14, 165, 233, 0.55);
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #022c22;
+  box-shadow: 0 14px 35px rgba(34, 197, 94, 0.45);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.7);
+  box-shadow: 0 18px 45px rgba(5, 150, 105, 0.7);
 }
 
 .btn-outline {
@@ -189,7 +199,9 @@ nav a:hover::after {
 }
 
 :root[data-theme="light"] .btn-outline {
-  background: rgba(249, 250, 251, 0.9);
+  background: linear-gradient(135deg, #e0f2fe, #e5f9f0);
+  color: #075985;
+  border-color: #bae6fd;
 }
 
 .btn-outline:hover {
@@ -198,7 +210,7 @@ nav a:hover::after {
 }
 
 :root[data-theme="light"] .btn-outline:hover {
-  background: #e5e7eb;
+  background: #dbeafe;
 }
 
 .btn span.chevron {
@@ -255,7 +267,7 @@ nav a:hover::after {
 /* HERO */
 .hero {
   position: relative;
-  padding: 2.6rem 0 1.8rem; /* ciaśniej */
+  padding: 2.6rem 0 1.8rem;
   overflow: hidden;
 }
 
@@ -369,8 +381,8 @@ nav a:hover::after {
 
 :root[data-theme="light"] .hero-card {
   background:
-    radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.16), transparent 60%),
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 60%),
     linear-gradient(to bottom, #ffffff, #f9fafb);
   border-color: rgba(148, 163, 184, 0.5);
 }
@@ -462,7 +474,7 @@ nav a:hover::after {
 
 /* SEKCJE */
 section {
-  padding: 2.2rem 0; /* ciaśniej */
+  padding: 2.2rem 0;
 }
 
 .section-header {
@@ -529,6 +541,13 @@ section {
   border-radius: 0.8rem;
   background: rgba(15, 23, 42, 0.85);
   border: 1px dashed rgba(148, 163, 184, 0.45);
+}
+
+/* jaśniejsze kafelki w trybie dziennym */
+:root[data-theme="light"] .values-grid div {
+  background: #eef2ff;
+  border-color: rgba(148, 163, 184, 0.5);
+  color: #0f172a;
 }
 
 /* USŁUGI */
@@ -679,7 +698,8 @@ section {
   display: flex;
   gap: 1rem;
   width: max-content;
-  animation: opinionsScroll 32s linear infinite;
+  /* wolniejsze przesuwanie komentarzy */
+  animation: opinionsScroll 50s linear infinite;
 }
 
 .opinion-card {
@@ -695,6 +715,12 @@ section {
 
 :root[data-theme="light"] .opinion-card {
   background: #ffffff;
+}
+
+.opinion-card p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 .opinion-meta {
@@ -777,10 +803,12 @@ section {
   font-size: 1rem;
 }
 
+/* przycisk w CTA w tej samej kolorystyce co inne */
 .cta-strip .btn {
-  background: rgba(15, 23, 42, 0.95);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #022c22;
   border-color: transparent;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.65);
+  box-shadow: 0 12px 30px rgba(5, 150, 105, 0.55);
 }
 
 :root[data-theme="light"] .cta-strip {
@@ -789,7 +817,8 @@ section {
 }
 
 :root[data-theme="light"] .cta-strip .btn {
-  background: #0f172a;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #022c22;
 }
 
 /* KONTAKT */
@@ -1079,7 +1108,7 @@ footer {
   }
 
   .hero {
-    padding-top: 2.1rem; /* mniej miejsca u góry */
+    padding-top: 2.1rem;
   }
 
   .cta-strip {
