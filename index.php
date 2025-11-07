@@ -2,8 +2,8 @@
 require_once __DIR__ . '/auth.php';   // auth.php wczyta też db.php
 
 $path = $_SERVER['REQUEST_URI'] ?? '/';
-$ip = $_SERVER['REMOTE_ADDR'] ?? null;
-$ua = $_SERVER['HTTP_USER_AGENT'] ?? null;
+$ip   = $_SERVER['REMOTE_ADDR'] ?? null;
+$ua   = $_SERVER['HTTP_USER_AGENT'] ?? null;
 
 global $pdo;
 $stmt = $pdo->prepare("
@@ -21,7 +21,6 @@ $currentUser = current_user();
 <!DOCTYPE html>
 <html lang="pl" data-theme="dark">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Usługi Informatyczne Kamil Kaczmarczyk – Specjalista IT</title>
@@ -61,25 +60,24 @@ $currentUser = current_user();
         </ul>
       </nav>
 
-<div class="nav-actions">
-  <?php if ($currentUser && $currentUser['role'] === 'admin'): ?>
-    <a href="/admin/dashboard.php" class="btn btn-outline">
-      <i class="fa-solid fa-gauge-high icon-left"></i>
-      Panel admina
-    </a>
-  <?php elseif ($currentUser && $currentUser['role'] === 'client'): ?>
-    <a href="/client/dashboard.php" class="btn btn-outline">
-      <i class="fa-solid fa-folder-shield icon-left"></i>
-      Panel klienta
-    </a>
-  <?php endif; ?>
+      <div class="nav-actions">
+        <?php if ($currentUser && $currentUser['role'] === 'admin'): ?>
+          <a href="/admin/dashboard.php" class="btn btn-outline">
+            <i class="fa-solid fa-gauge-high icon-left"></i>
+            Panel admina
+          </a>
+        <?php elseif ($currentUser && $currentUser['role'] === 'client'): ?>
+          <a href="/client/dashboard.php" class="btn btn-outline">
+            <i class="fa-solid fa-folder-shield icon-left"></i>
+            Panel klienta
+          </a>
+        <?php endif; ?>
 
-  <button class="btn btn-outline" data-scroll-to="#oferta">Oferta</button>
-  <button class="btn btn-primary" data-scroll-to="#kontakt">
-    Wyceń projekt <span class="chevron">→</span>
-  </button>
-</div>
-
+        <button class="btn btn-outline" data-scroll-to="#oferta">Oferta</button>
+        <button class="btn btn-primary" data-scroll-to="#kontakt">
+          Wyceń projekt <span class="chevron">→</span>
+        </button>
+      </div>
 
       <button class="nav-toggle" aria-label="Otwórz menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -189,19 +187,19 @@ $currentUser = current_user();
               </div>
               <div class="hero-stats">
                 <div class="stat">
-                  <strong><i class="fa-solid fa-chart-pie icon-left"></i>Monitoring</strong>
+                  <strong><i class="fa-solid fa-chart-pie icon-left"></i> Monitoring</strong>
                   ELK / Prometheus / Grafana dopasowane do Twoich systemów
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-rocket icon-left"></i>Automatyzacja</strong>
+                  <strong><i class="fa-solid fa-rocket icon-left"></i> Automatyzacja</strong>
                   Ansible oraz CI/CD do powtarzalnych wdrożeń
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-lock icon-left"></i>Bezpieczeństwo</strong>
+                  <strong><i class="fa-solid fa-lock icon-left"></i> Bezpieczeństwo</strong>
                   audyty, hardening, kopie zapasowe i procedury
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-handshake-angle icon-left"></i>Wsparcie</strong>
+                  <strong><i class="fa-solid fa-handshake-angle icon-left"></i> Wsparcie</strong>
                   doradztwo przy rozwoju i migracjach środowiska
                 </div>
               </div>
@@ -283,6 +281,66 @@ $currentUser = current_user();
               <div>
                 <strong>Partnerstwo</strong><br />
                 Budujemy długofalowe relacje zamiast jednorazowych wdrożeń.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGIE – PRZENIESIONE NAD USŁUGI -->
+    <section id="technologie">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <div class="section-kicker">Technologie</div>
+            <h2 class="section-title">Technologie, z którymi pracujemy</h2>
+          </div>
+          <p class="section-description">
+            Na co dzień pracujemy z systemami Linux oraz narzędziami wykorzystywanymi w automatyzacji, konteneryzacji
+            i tworzeniu oprogramowania. Dobieramy je do potrzeb konkretnego projektu.
+          </p>
+        </div>
+
+        <div class="tech-icons-row reveal">
+          <img src="images/linux-original.svg" alt="Linux" />
+          <img src="images/ansible-original.svg" alt="Ansible" />
+          <img src="images/docker-original.svg" alt="Docker" />
+          <img src="images/python-original.svg" alt="Python" />
+          <img src="images/git-original.svg" alt="Git" />
+        </div>
+
+        <div class="content">
+          <article class="card reveal">
+            <h3>Środowisko pracy</h3>
+            <p>
+              W zależności od projektu dobieramy narzędzia tak, aby ułatwić rozwój, utrzymanie i skalowanie systemów.
+            </p>
+
+            <div class="values-grid">
+              <div>
+                <strong>Linux</strong><br />
+                dystrybucje serwerowe dopasowane do środowiska produkcyjnego.
+              </div>
+              <div>
+                <strong>Ansible</strong><br />
+                automatyzacja konfiguracji i powtarzalnych zadań.
+              </div>
+              <div>
+                <strong>Docker / kontenery</strong><br />
+                izolacja usług i łatwiejsze wdrażanie aplikacji.
+              </div>
+              <div>
+                <strong>Monitoring</strong><br />
+                ELK, Prometheus, Grafana – monitoring, logi i dashboardy.
+              </div>
+              <div>
+                <strong>Git</strong><br />
+                kontrola wersji i przejrzyste procesy zmian.
+              </div>
+              <div>
+                <strong>Języki i narzędzia</strong><br />
+                m.in. Python oraz narzędzia do integracji i automatyzacji procesów.
               </div>
             </div>
           </article>
@@ -408,23 +466,25 @@ $currentUser = current_user();
             </div>
           </article>
 
+          <!-- ZMIENIONA KARTA: PROJEKTOWANIE STRON I PORTALI -->
           <article class="service-card reveal" data-reveal-delay="120">
-            <div class="service-tag">Konsultacje</div>
+            <div class="service-tag">Web / Portale</div>
             <h3 class="service-title">
-              <i class="fa-solid fa-user-tie service-icon" aria-hidden="true"></i>
-              Doradztwo i wsparcie IT
+              <i class="fa-solid fa-globe service-icon" aria-hidden="true"></i>
+              Projektowanie stron i portali internetowych
             </h3>
             <p>
-              Pomoc przy planowaniu rozwoju infrastruktury oraz przy konkretnych wyzwaniach technicznych.
+              Pomagam zaprojektować i wdrożyć nowoczesne strony firmowe, portale wewnętrzne oraz lekkie aplikacje webowe,
+              które dobrze współpracują z Twoją infrastrukturą.
             </p>
             <ul class="service-list">
-              <li><span class="bullet">•</span> konsultacje jednorazowe i cykliczne</li>
-              <li><span class="bullet">•</span> wsparcie przy przetargach i wyborze dostawców</li>
-              <li><span class="bullet">•</span> warsztaty dla zespołów technicznych</li>
-              <li><span class="bullet">•</span> dokumentacja i dobre praktyki</li>
+              <li><span class="bullet">•</span> projekt i wdrożenie responsywnych stron WWW</li>
+              <li><span class="bullet">•</span> integracja z istniejącą infrastrukturą i monitoringiem</li>
+              <li><span class="bullet">•</span> optymalizacja wydajności i bezpieczeństwa serwisu</li>
+              <li><span class="bullet">•</span> landing page’e pod kampanie i rekrutację</li>
             </ul>
             <div class="service-price">
-              Elastyczna forma <strong>współpracy doradczej</strong>, dopasowana do Twojego zespołu.
+              Zakres <strong>od prostych wizytówek po rozbudowane portale</strong> – w zależności od potrzeb biznesu.
             </div>
           </article>
         </div>
@@ -538,7 +598,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Po wdrożeniu monitoringu i automatyzacji mamy pełen obraz tego, co dzieje się w naszych systemach.
-                Reakcja na problemy jest zdecydowanie szybsza.”
+                Reakcja na problemy jest zdecydowanie szybsza.” 😊📊
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Anna K.</span>
@@ -549,7 +609,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Kamil pomógł nam zaprojektować i wdrożyć pipeline CI/CD. Zespół developmentu wreszcie może skupić się
-                na kodzie, a wdrożenia są przewidywalne.”
+                na kodzie, a wdrożenia są przewidywalne.” 🚀👨‍💻
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Marek P.</span>
@@ -560,7 +620,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Migracja do chmury była dla nas dużym wyzwaniem. Dzięki dobrze zaplanowanej architekturze obyło się bez
-                przestojów i zaskoczeń kosztowych.”
+                przestojów i zaskoczeń kosztowych.” ☁️✅
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Joanna L.</span>
@@ -571,7 +631,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Audyt bezpieczeństwa pokazał nam, jakie mamy słabe punkty. Po wdrożeniu zaleceń śpimy spokojniej –
-                szczególnie dział finansowy.”
+                szczególnie dział finansowy.” 🔒😌
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Tomasz R.</span>
@@ -583,7 +643,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Po wdrożeniu monitoringu i automatyzacji mamy pełen obraz tego, co dzieje się w naszych systemach.
-                Reakcja na problemy jest zdecydowanie szybsza.”
+                Reakcja na problemy jest zdecydowanie szybsza.” 😊📊
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Anna K.</span>
@@ -594,7 +654,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Kamil pomógł nam zaprojektować i wdrożyć pipeline CI/CD. Zespół developmentu wreszcie może skupić się
-                na kodzie, a wdrożenia są przewidywalne.”
+                na kodzie, a wdrożenia są przewidywalne.” 🚀👨‍💻
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Marek P.</span>
@@ -605,7 +665,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Migracja do chmury była dla nas dużym wyzwaniem. Dzięki dobrze zaplanowanej architekturze obyło się bez
-                przestojów i zaskoczeń kosztowych.”
+                przestojów i zaskoczeń kosztowych.” ☁️✅
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Joanna L.</span>
@@ -616,7 +676,7 @@ $currentUser = current_user();
             <article class="opinion-card">
               <p>
                 „Audyt bezpieczeństwa pokazał nam, jakie mamy słabe punkty. Po wdrożeniu zaleceń śpimy spokojniej –
-                szczególnie dział finansowy.”
+                szczególnie dział finansowy.” 🔒😌
               </p>
               <div class="opinion-meta">
                 <span class="opinion-name">Tomasz R.</span>
@@ -628,67 +688,6 @@ $currentUser = current_user();
       </div>
     </section>
 
-    <!-- TECHNOLOGIE -->
-    <section id="technologie">
-      <div class="container">
-        <div class="section-header reveal">
-          <div>
-            <div class="section-kicker">Technologie</div>
-            <h2 class="section-title">Technologie, z którymi pracujemy</h2>
-          </div>
-          <p class="section-description">
-            Na co dzień pracujemy z systemami Linux oraz narzędziami wykorzystywanymi w automatyzacji, konteneryzacji
-            i tworzeniu oprogramowania. Dobieramy je do potrzeb konkretnego projektu.
-          </p>
-        </div>
-
-        <div class="tech-icons-row reveal">
-          <img src="images/linux-original.svg" alt="Linux" />
-          <img src="images/ansible-original.svg" alt="Ansible" />
-          <img src="images/docker-original.svg" alt="Docker" />
-          <img src="images/python-original.svg" alt="Python" />
-          <img src="images/git-original.svg" alt="Git" />
-        </div>
-
-        <div class="content">
-          <article class="card reveal">
-            <h3>Środowisko pracy</h3>
-            <p>
-              W zależności od projektu dobieramy narzędzia tak, aby ułatwić rozwój, utrzymanie i skalowanie systemów.
-            </p>
-
-            <div class="values-grid">
-              <div>
-                <strong>Linux</strong><br />
-                dystrybucje serwerowe dopasowane do środowiska produkcyjnego.
-              </div>
-              <div>
-                <strong>Ansible</strong><br />
-                automatyzacja konfiguracji i powtarzalnych zadań.
-              </div>
-              <div>
-                <strong>Docker / kontenery</strong><br />
-                izolacja usług i łatwiejsze wdrażanie aplikacji.
-              </div>
-              <div>
-                <strong>Monitoring</strong><br />
-                ELK, Prometheus, Grafana – monitoring, logi i dashboardy.
-              </div>
-              <div>
-                <strong>Git</strong><br />
-                kontrola wersji i przejrzyste procesy zmian.
-              </div>
-              <div>
-                <strong>Języki i narzędzia</strong><br />
-                m.in. Python oraz narzędzia do integracji i automatyzacji procesów.
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ZESPÓŁ -->
     <!-- ZESPÓŁ -->
     <section id="zespol">
       <div class="container">
@@ -794,7 +793,6 @@ $currentUser = current_user();
       </div>
     </section>
 
-
     <!-- KONTAKT -->
     <section id="kontakt">
       <div class="container">
@@ -824,19 +822,27 @@ $currentUser = current_user();
             </p>
             <div class="contact-items">
               <div>
-                <span class="label"><i class="fa-solid fa-arrows-left-right icon-left" aria-hidden="true"></i>Skala</span>
+                <span class="label">
+                  <i class="fa-solid fa-arrows-left-right icon-left" aria-hidden="true"></i> Skala
+                </span>
                 <span>liczba serwerów / usług, kluczowe aplikacje, liczba użytkowników</span>
               </div>
               <div>
-                <span class="label"><i class="fa-solid fa-layer-group icon-left" aria-hidden="true"></i>Obszar</span>
+                <span class="label">
+                  <i class="fa-solid fa-layer-group icon-left" aria-hidden="true"></i> Obszar
+                </span>
                 <span>administracja, automatyzacja, monitoring, bezpieczeństwo itp.</span>
               </div>
               <div>
-                <span class="label"><i class="fa-solid fa-bullseye icon-left" aria-hidden="true"></i>Cel</span>
+                <span class="label">
+                  <i class="fa-solid fa-bullseye icon-left" aria-hidden="true"></i> Cel
+                </span>
                 <span>np. stabilizacja, migracja, redukcja kosztów, wdrożenie monitoringu</span>
               </div>
               <div>
-                <span class="label"><i class="fa-solid fa-fire icon-left" aria-hidden="true"></i>Pilność</span>
+                <span class="label">
+                  <i class="fa-solid fa-fire icon-left" aria-hidden="true"></i> Pilność
+                </span>
                 <span>projekt planowany czy problem wymagający szybkiej reakcji</span>
               </div>
             </div>
