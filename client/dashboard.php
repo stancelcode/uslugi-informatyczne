@@ -1,18 +1,24 @@
 <?php
 require_once __DIR__ . '/../auth.php';
-
 require_login();
 $user = current_user();
 global $pdo;
 
-$stmt = $pdo->prepare("
-  SELECT *
-  FROM client_documents
-  WHERE user_id = :uid
-  ORDER BY created_at DESC
-");
+// DOKUMENTY KLIENTA
+$stmt = $pdo->prepare("SELECT * FROM client_documents WHERE user_id = :uid ORDER BY created_at DESC");
 $stmt->execute(['uid' => $user['id']]);
 $docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// OFERTY / PODSTRONY PRZYPISANE DO KLIENTA
+$offersStmt = $pdo->prepare("
+  SELECT o.title, o.slug, oa.created_at
+  FROM offer_access oa
+  JOIN offers o ON o.id = oa.offer_id
+  WHERE oa.user_id = :uid
+  ORDER BY oa.created_at DESC, o.title ASC
+");
+$offersStmt->execute(['uid' => $user['id']]);
+$offers = $offersStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pl" data-theme="dark">
@@ -27,10 +33,6 @@ $docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <!-- na wszelki wypadek wyłącz poziomy scroll -->
-  <style>
-    html, body { overflow-x: hidden; }
-  </style>
 </head>
 <body>
   <!-- Pływający przycisk trybu dzień/noc -->
@@ -46,23 +48,14 @@ $docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <header>
     <div class="container nav">
       <div class="logo">
-        <div class="logo-mark" aria-hidden="true"></div>
+        <div class="logo-mark"></div>
         <span>Panel klienta</span>
       </div>
-
-      <nav aria-label="Nawigacja panelu klienta">
-        <ul>
-          <li><a href="/my_offers.php">Moje oferty</a></li>
-          <li><a href="/index.php#kontakt">Kontakt</a></li>
-        </ul>
-      </nav>
-
       <div class="nav-actions">
         <span style="font-size:0.85rem;color:var(--text-muted);">
-          Zalogowany:
-          <?php echo htmlspecialchars($user['full_name'] ?? $user['email'], ENT_QUOTES, 'UTF-8'); ?>
+          Zalogowany: <?php echo htmlspecialchars($user['full_name'], ENT_QUOTES, 'UTF-8'); ?>
         </span>
-        <a href="/index.php" class="btn btn-outline">
+        <a href="/" class="btn btn-outline">
           <i class="fa-solid fa-house icon-left"></i> Strona główna
         </a>
         <a href="/logout.php" class="btn btn-primary">
@@ -84,46 +77,59 @@ $docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </h2>
           </div>
           <p class="section-description">
-            Tutaj znajdziesz dokumentację, raporty oraz inne materiały przygotowane
-            indywidualnie dla Twojej firmy.
+            W tym miejscu znajdziesz przygotowane dla Twojej firmy oferty indywidualne oraz dokumenty do pobrania.
           </p>
         </div>
 
+        <!-- KARTA: OFERTY / PODSTRONY -->
         <article class="card">
           <h3>
-            <i class="fa-solid fa-file-lines icon-left"></i>
-            Twoje dokumenty
+            <i class="fa-solid fa-file-signature icon-left"></i>
+            Twoje oferty indywidualne
           </h3>
 
+          <?php if (!$offers): ?>
+            <p style="margin-top:0.6rem;font-size:0.9rem;">
+              Na razie nie masz przypisanych żadnych ofert.
+              Jeśli oczekujesz oferty, skontaktuj się z nami.
+            </p>
+          <?php else: ?>
+            <ul style="list-style:none;margin-top:0.8rem;padding-left:0;">
+              <?php foreach ($offers as $off): ?>
+                <li style="margin-bottom:0.6rem;border-bottom:1px solid rgba(148,163,184,0.3);padding-bottom:0.4rem;">
+                  <strong>
+                    <a href="/offer.php?slug=<?= urlencode($off['slug']) ?>">
+                      <?= htmlspecialchars($off['title'], ENT_QUOTES, 'UTF-8') ?>
+                    </a>
+                  </strong><br>
+                  <small>
+                    Udostępniono:
+                    <?= htmlspecialchars($off['created_at'], ENT_QUOTES, 'UTF-8') ?>
+                  </small><br>
+                  <small>
+                    Link bezpośredni:
+                    /offer.php?slug=<?= htmlspecialchars($off['slug'], ENT_QUOTES, 'UTF-8') ?>
+                  </small>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+        </article>
+
+        <!-- KARTA: DOKUMENTY -->
+        <article class="card" style="margin-top:1.5rem;">
+          <h3><i class="fa-solid fa-file-lines icon-left"></i>Twoje dokumenty</h3>
           <?php if (!$docs): ?>
-            <p style="margin-top:0.6rem;font-size:0.9rem;color:var(--text-muted);">
+            <p style="margin-top:0.6rem;font-size:0.9rem;">
               Na razie nie dodano żadnych dokumentów do Twojego konta.
             </p>
           <?php else: ?>
-            <ul style="list-style:none;margin-top:0.9rem;padding-left:0;display:grid;gap:0.6rem;">
+            <ul style="list-style:none;margin-top:0.8rem;padding-left:0;">
               <?php foreach ($docs as $doc): ?>
-                <li
-                  style="
-                    border-radius:0.75rem;
-                    border:1px solid var(--border-subtle);
-                    padding:0.6rem 0.7rem;
-                    font-size:0.86rem;
-                  "
-                >
-                  <strong>
-                    <?php echo htmlspecialchars($doc['title'], ENT_QUOTES, 'UTF-8'); ?>
-                  </strong><br>
-                  <small style="color:var(--text-muted);">
-                    Dodano:
-                    <?php echo htmlspecialchars($doc['created_at'], ENT_QUOTES, 'UTF-8'); ?>
-                  </small><br>
-                  <a
-                    href="<?php echo htmlspecialchars($doc['file_path'], ENT_QUOTES, 'UTF-8'); ?>"
-                    target="_blank"
-                    class="btn btn-outline"
-                    style="margin-top:0.35rem;padding:0.25rem 0.7rem;font-size:0.8rem;"
-                  >
-                    <i class="fa-solid fa-download icon-left"></i>
+                <li style="margin-bottom:0.6rem;border-bottom:1px solid rgba(148,163,184,0.3);padding-bottom:0.4rem;">
+                  <strong><?php echo htmlspecialchars($doc['title'], ENT_QUOTES, 'UTF-8'); ?></strong><br>
+                  <small>Dodano: <?php echo htmlspecialchars($doc['created_at'], ENT_QUOTES, 'UTF-8'); ?></small><br>
+                  <a href="<?php echo htmlspecialchars($doc['file_path'], ENT_QUOTES, 'UTF-8'); ?>" target="_blank">
                     Pobierz / otwórz
                   </a>
                 </li>
@@ -134,20 +140,14 @@ $docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="cta-strip" style="margin-top:1.5rem;">
           <div>
-            <strong>Masz dedykowaną ofertę lub materiały?</strong><br>
-            Sprawdź także zakładkę „Moje oferty” – tam znajdziesz przygotowane specjalnie
-            dla Ciebie propozycje współpracy.
+            <strong>Potrzebujesz zmian w konfiguracji lub nowego projektu?</strong><br>
+            Skorzystaj z formularza kontaktowego na stronie głównej i zaznacz w treści,
+            że piszesz jako stały klient.
           </div>
-          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
-            <a href="/my_offers.php" class="btn">
-              <i class="fa-solid fa-file-signature icon-left"></i>
-              Przejdź do ofert
-            </a>
-            <a href="/index.php#kontakt" class="btn">
-              <i class="fa-solid fa-comments icon-left"></i>
-              Formularz kontaktowy
-            </a>
-          </div>
+          <a href="/#kontakt" class="btn">
+            <i class="fa-solid fa-comments icon-left"></i>
+            Przejdź do formularza
+          </a>
         </div>
       </div>
     </section>

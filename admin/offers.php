@@ -81,24 +81,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'revok
 /* Pobranie ofert i użytkowników do formularzy */
 $offers = $pdo->query("SELECT * FROM offers ORDER BY created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
 $users  = $pdo->query("
-    SELECT id, email, role 
+    SELECT id, email, role, full_name
     FROM users 
     ORDER BY role DESC, email ASC
 ")->fetchAll(PDO::FETCH_ASSOC);
 
+/* --- Filtr użytkownika dla listy dostępów --- */
+$filterUserId = isset($_GET['user_id']) ? (int)$_GET['user_id'] : 0;
+
 /* Lista aktualnych dostępów (do podglądu) */
-$accessList = $pdo->query("
-    SELECT oa.id,
-           u.email,
-           u.role,
-           o.title,
-           o.slug,
-           oa.created_at
-    FROM offer_access oa
-    JOIN users u  ON u.id = oa.user_id
-    JOIN offers o ON o.id = oa.offer_id
-    ORDER BY oa.created_at DESC
-")->fetchAll(PDO::FETCH_ASSOC);
+if ($filterUserId > 0) {
+    $stmt = $pdo->prepare("
+        SELECT oa.id,
+               u.email,
+               u.full_name,
+               u.role,
+               o.title,
+               o.slug,
+               oa.created_at
+        FROM offer_access oa
+        JOIN users u  ON u.id = oa.user_id
+        JOIN offers o ON o.id = oa.offer_id
+        WHERE oa.user_id = :uid
+        ORDER BY oa.created_at DESC
+    ");
+    $stmt->execute(['uid' => $filterUserId]);
+    $accessList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $accessList = $pdo->query("
+        SELECT oa.id,
+               u.email,
+               u.full_name,
+               u.role,
+               o.title,
+               o.slug,
+               oa.created_at
+        FROM offer_access oa
+        JOIN users u  ON u.id = oa.user_id
+        JOIN offers o ON o.id = oa.offer_id
+        ORDER BY oa.created_at DESC
+    ")->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl" data-theme="dark">
@@ -221,7 +244,8 @@ $accessList = $pdo->query("
                 <option value="">-- wybierz --</option>
                 <?php foreach ($users as $u): ?>
                   <option value="<?= $u['id'] ?>">
-                    (<?= htmlspecialchars($u['role']) ?>) <?= htmlspecialchars($u['email']) ?>
+                    (<?= htmlspecialchars($u['role']) ?>)
+                    <?= htmlspecialchars($u['full_name'] ?: $u['email']) ?>
                   </option>
                 <?php endforeach; ?>
               </select>
@@ -255,8 +279,32 @@ $accessList = $pdo->query("
             Aktualne dostępy
           </h2>
 
+          <!-- FILTR PO UŻYTKOWNIKU -->
+          <form method="get" style="margin-bottom:0.8rem;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;">
+            <label style="font-size:0.85rem;">
+              Pokaż dostępy dla:
+              <select name="user_id" class="status-select" onchange="this.form.submit()">
+                <option value="0">wszyscy użytkownicy</option>
+                <?php foreach ($users as $u): ?>
+                  <option value="<?= $u['id'] ?>" <?= $filterUserId === (int)$u['id'] ? 'selected' : '' ?>>
+                    (<?= htmlspecialchars($u['role']) ?>)
+                    <?= htmlspecialchars($u['full_name'] ?: $u['email']) ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </label>
+
+            <?php if ($filterUserId > 0): ?>
+              <a href="/admin/offers.php"
+                 class="btn btn-outline"
+                 style="padding:0.25rem 0.7rem;font-size:0.78rem;">
+                Wyczyść filtr
+              </a>
+            <?php endif; ?>
+          </form>
+
           <?php if (!$accessList): ?>
-            <p style="font-size:0.9rem;">Brak przypisanych dostępów.</p>
+            <p style="font-size:0.9rem;">Brak przypisanych dostępów dla wybranego filtra.</p>
           <?php else: ?>
             <div style="overflow-x:auto;">
               <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
@@ -273,7 +321,10 @@ $accessList = $pdo->query("
                 <tbody>
                 <?php foreach ($accessList as $row): ?>
                   <tr>
-                    <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['email']) ?></td>
+                    <td style="padding:0.35rem 0.4rem;">
+                      <?= htmlspecialchars(($row['full_name'] ?: $row['email']), ENT_QUOTES, 'UTF-8') ?><br>
+                      <small><?= htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') ?></small>
+                    </td>
                     <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['role']) ?></td>
                     <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['title']) ?></td>
                     <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['slug']) ?></td>
