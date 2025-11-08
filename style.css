@@ -1329,62 +1329,48 @@ footer {
 
 /* === MAŁA ILUSTRACJA INFRA W „ŚRODOWISKO PRACY” === */
 /* Mini ilustracja infrastruktury – Środowisko pracy */
-.infra-illustration {
-  position: relative;
-  max-width: 420px;
-  height: 60px;
-  margin: 1.75rem auto 1.5rem;
-  pointer-events: none;   /* żeby nie zachowywało się jak klikalne */
+/* Mini schemat infrastruktury – Środowisko pracy */
+.infra-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  max-width: 460px;
+  margin: 1.5rem auto 1.2rem;
 }
 
-/* Dwie linie (np. logi + metryki) */
-.infra-link {
-  position: absolute;
-  left: 40px;
-  right: 40px;
-  height: 2px;
+.infra-flow-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem;
   border-radius: 999px;
-  background: linear-gradient(90deg, #27ae60, #00a3ff);
-  opacity: 0.9;
+  background: rgba(15, 23, 42, 0.02); /* delikatne tło */
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
-.infra-link--top {
-  top: 50%;
-  transform: translateY(-10px);
+.infra-flow-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  color: #0f172a;
+  font-size: 0.8rem;
 }
 
-.infra-link--bottom {
-  top: 50%;
-  transform: translateY(10px);
+.infra-flow-label {
+  font-weight: 500;
 }
 
-/* Węzły – małe kółka zamiast „przycisków” */
-.infra-node {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--surface-elevated, #ffffff);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Lewy węzeł */
-.infra-node--left {
-  left: 10px;
-}
-
-/* Środkowy węzeł */
-.infra-node--center {
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Prawy węzeł */
-.infra-node--right {
-  right: 10px;
+.infra-flow-arrow {
+  font-size: 0.9rem;
+  opacity: 0.55;
 }
 
 
