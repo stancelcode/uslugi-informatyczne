@@ -339,10 +339,16 @@ $currentUser = current_user();
 
         <div class="content">
           <article class="card reveal">
-            <h3>Środowisko pracy</h3>
+            <h3>
+              <i class="fa-solid fa-laptop-code icon-left" aria-hidden="true"></i>
+              Środowisko pracy
+            </h3>
+
             <p>
               W zależności od projektu dobieramy narzędzia tak, aby ułatwić rozwój, utrzymanie i skalowanie systemów.
             </p>
+
+            <!-- Mini ilustracja infrastruktury -->
             <div class="infra-illustration">
               <div class="infra-node infra-node--left"></div>
               <div class="infra-node infra-node--center"></div>
@@ -379,6 +385,7 @@ $currentUser = current_user();
             </div>
           </article>
         </div>
+
       </div>
     </section>
 
