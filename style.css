@@ -955,6 +955,7 @@ form {
 input[type="text"],
 input[type="email"],
 input[type="tel"],
+input[type="password"],
 textarea {
   border-radius: 0.75rem;
   border: 1px solid rgba(148, 163, 184, 0.4);
