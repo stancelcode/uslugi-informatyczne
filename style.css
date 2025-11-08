@@ -1275,13 +1275,14 @@ footer {
 .hero-mockup {
   position: absolute;
   right: 6%;
-  bottom: -32px;
-  width: 250px;
-  height: 170px;
+  bottom: -110px;        /* mocniej opuszczony pod sekcję – nie nachodzi na treść */
+  width: 230px;          /* lekko zmniejszony, żeby był subtelniejszy */
+  height: 150px;
   pointer-events: none;
   transform: perspective(1100px) rotateX(18deg) rotateY(-26deg) rotateZ(1deg);
   transform-origin: center;
 }
+
 
 .hero-mockup-base {
   position: relative;
