@@ -175,4 +175,31 @@ document.addEventListener("DOMContentLoaded", () => {
       revealElements.forEach((el) => el.classList.add("reveal-visible"));
     }
   }
+
+  // --- DELIKATNY PARALLAX DLA TŁA HERO ---
+  const heroBg = document.querySelector(".hero-bg-grid");
+  const heroBlobs = document.querySelectorAll(".hero-bg-blob");
+
+  if (heroBg || heroBlobs.length > 0) {
+    const parallax = () => {
+      const y = window.scrollY || window.pageYOffset || 0;
+      const offsetGrid = y * 0.15;
+
+      if (heroBg) {
+        heroBg.style.transform = `translate3d(0, ${-offsetGrid}px, 0)`;
+      }
+
+      heroBlobs.forEach((blob, index) => {
+        const factor = index === 0 ? 0.25 : 0.18;
+        blob.style.transform = `translate3d(0, ${-y * factor}px, 0)`;
+      });
+    };
+
+    const onScroll = () => {
+      window.requestAnimationFrame(parallax);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    parallax();
+  }
 });

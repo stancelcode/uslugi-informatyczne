@@ -111,8 +111,13 @@ $currentUser = current_user();
 
   <main>
     <!-- HERO -->
+    <!-- HERO -->
     <section class="hero">
+      <!-- TŁA DO PARALLAXU -->
       <div class="hero-bg-grid" aria-hidden="true"></div>
+      <div class="hero-bg-blob hero-bg-blob-left" aria-hidden="true"></div>
+      <div class="hero-bg-blob hero-bg-blob-right" aria-hidden="true"></div>
+
       <div class="container">
         <div class="badge reveal">
           <span class="badge-dot"></span>
@@ -125,6 +130,7 @@ $currentUser = current_user();
         </h1>
 
         <div class="hero-grid">
+          <!-- LEWA KOLUMNA -->
           <div>
             <p class="hero-subtitle reveal" data-reveal-delay="140">
               Specjalizuję się w administracji systemami Linux, automatyzacji procesów (DevOps) oraz bezpieczeństwie
@@ -165,6 +171,7 @@ $currentUser = current_user();
             </div>
           </div>
 
+          <!-- PRAWA KOLUMNA / KARTA -->
           <aside class="hero-card reveal" data-reveal-delay="320" aria-label="Podgląd współpracy IT">
             <div class="hero-card-blur"></div>
             <div class="hero-card-inner">
@@ -179,35 +186,55 @@ $currentUser = current_user();
                   kluczowych systemów w Twojej organizacji.
                 </p>
                 <div class="hero-card-tags">
-                  <span class="pill"><i class="fa-brands fa-linux"></i> Administracja Linux</span>
-                  <span class="pill"><i class="fa-solid fa-gears"></i> Automatyzacja / DevOps</span>
-                  <span class="pill"><i class="fa-solid fa-chart-line"></i> Monitoring i logi</span>
-                  <span class="pill"><i class="fa-solid fa-shield-halved"></i> Bezpieczeństwo</span>
+                  <span class="pill"><i class="fa-brands fa-linux"></i>&nbsp;Administracja Linux</span>
+                  <span class="pill"><i class="fa-solid fa-gears"></i>&nbsp;Automatyzacja / DevOps</span>
+                  <span class="pill"><i class="fa-solid fa-chart-line"></i>&nbsp;Monitoring i logi</span>
+                  <span class="pill"><i class="fa-solid fa-shield-halved"></i>&nbsp;Bezpieczeństwo</span>
                 </div>
               </div>
+
+              <!-- MINI ILUSTRACJA – PIPELINE DEVOPS -->
+              <div class="hero-illustration">
+                <div class="hero-ill-step hero-ill-step--code">Code</div>
+                <div class="hero-ill-arrow">➜</div>
+                <div class="hero-ill-step hero-ill-step--pipeline">CI/CD</div>
+                <div class="hero-ill-arrow">➜</div>
+                <div class="hero-ill-step hero-ill-step--prod">Prod</div>
+              </div>
+
               <div class="hero-stats">
                 <div class="stat">
-                  <strong><i class="fa-solid fa-chart-pie icon-left"></i> Monitoring</strong>
+                  <strong><i class="fa-solid fa-chart-pie icon-left"></i>Monitoring</strong>
                   ELK / Prometheus / Grafana dopasowane do Twoich systemów
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-rocket icon-left"></i> Automatyzacja</strong>
+                  <strong><i class="fa-solid fa-rocket icon-left"></i>Automatyzacja</strong>
                   Ansible oraz CI/CD do powtarzalnych wdrożeń
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-lock icon-left"></i> Bezpieczeństwo</strong>
+                  <strong><i class="fa-solid fa-lock icon-left"></i>Bezpieczeństwo</strong>
                   audyty, hardening, kopie zapasowe i procedury
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-handshake-angle icon-left"></i> Wsparcie</strong>
+                  <strong><i class="fa-solid fa-handshake-angle icon-left"></i>Wsparcie</strong>
                   doradztwo przy rozwoju i migracjach środowiska
                 </div>
               </div>
             </div>
           </aside>
         </div>
+
+        <!-- LEKKI MOCKUP 3D LAPTOPA / SERWERA -->
+        <div class="hero-mockup" aria-hidden="true">
+          <div class="hero-mockup-base">
+            <div class="hero-mockup-screen">
+              <div class="hero-mockup-screen-inner"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
 
     <!-- O NAS -->
     <section id="onas">
@@ -316,6 +343,13 @@ $currentUser = current_user();
             <p>
               W zależności od projektu dobieramy narzędzia tak, aby ułatwić rozwój, utrzymanie i skalowanie systemów.
             </p>
+            <div class="infra-illustration">
+              <div class="infra-node infra-node--left"></div>
+              <div class="infra-node infra-node--center"></div>
+              <div class="infra-node infra-node--right"></div>
+              <div class="infra-link infra-link--top"></div>
+              <div class="infra-link infra-link--bottom"></div>
+            </div>
 
             <div class="values-grid">
               <div>
@@ -905,9 +939,13 @@ $currentUser = current_user();
                 </p>
               </div>
               <div class="form-success" id="formSuccess">
-                Dziękujemy! Twoja wiadomość została wysłana. Jeśli formularz ma działać z CAPTCHA, możesz tu podpiąć
-                istniejące rozwiązanie z send_form.php / captcha.php.
+                <span class="form-success-icon">✅</span>
+                <span>
+                  Dziękujemy! Twoja wiadomość została wysłana. Jeśli formularz ma działać z CAPTCHA, możesz tu podpiąć
+                  istniejące rozwiązanie z send_form.php / captcha.php.
+                </span>
               </div>
+
             </form>
           </div>
         </div>
