@@ -37,6 +37,12 @@ $currentUser = current_user();
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <!-- Blokada poziomego scrolla, gdy coś minimalnie wystaje poza viewport -->
+  <style>
+    html, body {
+      overflow-x: hidden;
+    }
+  </style>
 </head>
 <body>
 
@@ -110,7 +116,6 @@ $currentUser = current_user();
   </button>
 
   <main>
-    <!-- HERO -->
     <!-- HERO -->
     <section class="hero">
       <!-- TŁA DO PARALLAXU -->
@@ -204,19 +209,19 @@ $currentUser = current_user();
 
               <div class="hero-stats">
                 <div class="stat">
-                  <strong><i class="fa-solid fa-chart-pie icon-left"></i>Monitoring</strong>
+                  <strong><i class="fa-solid fa-chart-pie icon-left"></i> Monitoring</strong>
                   ELK / Prometheus / Grafana dopasowane do Twoich systemów
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-rocket icon-left"></i>Automatyzacja</strong>
+                  <strong><i class="fa-solid fa-rocket icon-left"></i> Automatyzacja</strong>
                   Ansible oraz CI/CD do powtarzalnych wdrożeń
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-lock icon-left"></i>Bezpieczeństwo</strong>
+                  <strong><i class="fa-solid fa-lock icon-left"></i> Bezpieczeństwo</strong>
                   audyty, hardening, kopie zapasowe i procedury
                 </div>
                 <div class="stat">
-                  <strong><i class="fa-solid fa-handshake-angle icon-left"></i>Wsparcie</strong>
+                  <strong><i class="fa-solid fa-handshake-angle icon-left"></i> Wsparcie</strong>
                   doradztwo przy rozwoju i migracjach środowiska
                 </div>
               </div>
@@ -234,7 +239,6 @@ $currentUser = current_user();
         </div>
       </div>
     </section>
-
 
     <!-- O NAS -->
     <section id="onas">
@@ -315,7 +319,7 @@ $currentUser = current_user();
       </div>
     </section>
 
-    <!-- TECHNOLOGIE – PRZENIESIONE NAD USŁUGI -->
+    <!-- TECHNOLOGIE – NAD USŁUGAMI -->
     <section id="technologie">
       <div class="container">
         <div class="section-header reveal">
@@ -385,7 +389,6 @@ $currentUser = current_user();
             </div>
           </article>
         </div>
-
       </div>
     </section>
 
@@ -952,7 +955,6 @@ $currentUser = current_user();
                   istniejące rozwiązanie z send_form.php / captcha.php.
                 </span>
               </div>
-
             </form>
           </div>
         </div>
