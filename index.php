@@ -199,13 +199,22 @@ $currentUser = current_user();
               </div>
 
               <!-- MINI ILUSTRACJA – PIPELINE DEVOPS -->
-              <div class="hero-illustration">
-                <div class="hero-ill-step hero-ill-step--code">Code</div>
-                <div class="hero-ill-arrow">➜</div>
-                <div class="hero-ill-step hero-ill-step--pipeline">CI/CD</div>
-                <div class="hero-ill-arrow">➜</div>
-                <div class="hero-ill-step hero-ill-step--prod">Prod</div>
-              </div>
+<div class="hero-illustration">
+  <div class="hero-ill-step hero-ill-step--code">CODE</div>
+  <div class="hero-ill-arrow">➜</div>
+
+  <div class="hero-ill-step hero-ill-step--pipeline">CI/CD</div>
+  <div class="hero-ill-arrow">➜</div>
+
+  <div class="hero-ill-step hero-ill-step--sec">SEC</div>
+  <div class="hero-ill-arrow">➜</div>
+
+  <div class="hero-ill-step hero-ill-step--monitor">MONITORING</div>
+  <div class="hero-ill-arrow">➜</div>
+
+  <div class="hero-ill-step hero-ill-step--prod">PROD</div>
+</div>
+
 
               <div class="hero-stats">
                 <div class="stat">
