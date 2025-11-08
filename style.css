@@ -1329,16 +1329,23 @@ footer {
 
 /* === MAŁA ILUSTRACJA INFRA W „ŚRODOWISKO PRACY” === */
 /* Mini ilustracja infrastruktury – Środowisko pracy */
-/* Mini schemat infrastruktury – Środowisko pracy */
 .infra-flow {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  flex-wrap: wrap;
-  max-width: 460px;
+  flex-wrap: nowrap; /* NIE ZAWIJAJ elementów do nowej linii */
+  overflow-x: auto; /* pozwól przewijać w poziomie na małych ekranach */
+  max-width: 100%;
   margin: 1.5rem auto 1.2rem;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none; /* ukryj pasek przewijania w Firefoksie */
 }
+
+.infra-flow::-webkit-scrollbar {
+  display: none; /* ukryj pasek przewijania w Chrome/Safari */
+}
+
 
 .infra-flow-step {
   display: flex;

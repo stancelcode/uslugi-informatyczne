@@ -355,6 +355,7 @@ $currentUser = current_user();
             <!-- Mini ilustracja infrastruktury -->
 <!-- Mini schemat przepływu: serwery -> automatyzacja -> monitoring -->
 <!-- Mini schemat przepływu: plan -> serwery -> automatyzacja -> monitoring -> bezpieczeństwo -> wsparcie -->
+<!-- Schemat przepływu: Plan -> Infrastruktura -> Bezpieczeństwo -> Automatyzacja -> Monitoring -> Wsparcie -->
 <div class="infra-flow">
   <div class="infra-flow-step">
     <span class="infra-flow-icon">
@@ -367,9 +368,18 @@ $currentUser = current_user();
 
   <div class="infra-flow-step">
     <span class="infra-flow-icon">
-      <i class="fa-solid fa-server" aria-hidden="true"></i>
+      <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
     </span>
-    <span class="infra-flow-label">Serwery</span>
+    <span class="infra-flow-label">Infrastruktura</span>
+  </div>
+
+  <span class="infra-flow-arrow">➜</span>
+
+  <div class="infra-flow-step">
+    <span class="infra-flow-icon">
+      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+    </span>
+    <span class="infra-flow-label">Bezpieczeństwo</span>
   </div>
 
   <span class="infra-flow-arrow">➜</span>
@@ -394,22 +404,11 @@ $currentUser = current_user();
 
   <div class="infra-flow-step">
     <span class="infra-flow-icon">
-      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-    </span>
-    <span class="infra-flow-label">Bezpieczeństwo</span>
-  </div>
-
-  <span class="infra-flow-arrow">➜</span>
-
-  <div class="infra-flow-step">
-    <span class="infra-flow-icon">
       <i class="fa-solid fa-handshake-angle" aria-hidden="true"></i>
     </span>
     <span class="infra-flow-label">Wsparcie</span>
   </div>
 </div>
-
-
 
             <div class="values-grid">
               <div>
