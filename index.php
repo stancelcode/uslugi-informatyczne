@@ -353,13 +353,34 @@ $currentUser = current_user();
             </p>
 
             <!-- Mini ilustracja infrastruktury -->
-            <div class="infra-illustration">
-              <div class="infra-node infra-node--left"></div>
-              <div class="infra-node infra-node--center"></div>
-              <div class="infra-node infra-node--right"></div>
-              <div class="infra-link infra-link--top"></div>
-              <div class="infra-link infra-link--bottom"></div>
-            </div>
+<!-- Mini schemat przepływu: serwery -> automatyzacja -> monitoring -->
+<div class="infra-flow">
+  <div class="infra-flow-step">
+    <span class="infra-flow-icon">
+      <i class="fa-solid fa-server" aria-hidden="true"></i>
+    </span>
+    <span class="infra-flow-label">Serwery</span>
+  </div>
+
+  <span class="infra-flow-arrow">➜</span>
+
+  <div class="infra-flow-step">
+    <span class="infra-flow-icon">
+      <i class="fa-solid fa-gears" aria-hidden="true"></i>
+    </span>
+    <span class="infra-flow-label">Automatyzacja</span>
+  </div>
+
+  <span class="infra-flow-arrow">➜</span>
+
+  <div class="infra-flow-step">
+    <span class="infra-flow-icon">
+      <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+    </span>
+    <span class="infra-flow-label">Monitoring</span>
+  </div>
+</div>
+
 
             <div class="values-grid">
               <div>
