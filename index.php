@@ -54,22 +54,22 @@ $currentUser = current_user();
       </div>
 
       <nav aria-label="Główna nawigacja">
-        <ul>
-          <li><a href="#onas">O nas</a></li>
-          <li><a href="#oferta">Usługi</a></li>
-          <li><a href="#referencje">Realizacje</a></li>
-          <li><a href="#opinie">Opinie</a></li>
-          <li><a href="#technologie">Technologie</a></li>
-          <li><a href="#zespol">Zespół</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
+  <ul>
+    <li><a href="#onas">O nas</a></li>
+    <li><a href="#oferta">Usługi</a></li>
+    <li><a href="#referencje">Realizacje</a></li>
+    <li><a href="#opinie">Opinie</a></li>
+    <li><a href="#technologie">Technologie</a></li>
+    <li><a href="#zespol">Zespół</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
 
-                    <?php if ($currentUser): ?>
-            <li><a href="/my_offers.php">Moje oferty</a></li>
-          <?php endif; ?>
-          
-          <li><a href="/login.php">Logowanie</a></li>
-        </ul>
-      </nav>
+    <?php if ($currentUser): ?>
+      <li><a href="/my_offers.php">Moje oferty</a></li>
+    <?php endif; ?>
+
+    <li><a href="/login.php">Logowanie</a></li>
+  </ul>
+</nav>
 
       <div class="nav-actions">
         <?php if ($currentUser && $currentUser['role'] === 'admin'): ?>

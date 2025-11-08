@@ -1,76 +1,83 @@
 <?php
-// auth.php
+// auth.php – obsługa sesji, logowania i ról
+
 require_once __DIR__ . '/db.php';
 
-function current_user(): ?array
-{
-    return $_SESSION['user'] ?? null;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-function is_logged_in(): bool
-{
-    return current_user() !== null;
-}
+/**
+ * Zwraca aktualnie zalogowanego użytkownika (tablica z bazy)
+ * lub null, jeśli nikt nie jest zalogowany.
+ */
+function current_user(): ?array {
+    static $cached = null;
 
-function login_user(string $email, string $password): bool
-{
+    if ($cached !== null) {
+        return $cached;
+    }
+
+    if (empty($_SESSION['user_id'])) {
+        return null;
+    }
+
     global $pdo;
+    $stmt = $pdo->prepare("SELECT id, full_name, email, role, is_active FROM users WHERE id = :id LIMIT 1");
+    $stmt->execute(['id' => $_SESSION['user_id']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
-    $stmt->execute(['email' => $email]);
-    $user = $stmt->fetch();
-
-    if (!$user) {
-        return false;
+    if (!$user || (int)$user['is_active'] !== 1) {
+        // konto nieaktywne lub usunięte – wyloguj
+        logout_user();
+        return null;
     }
 
-    if (!password_verify($password, $user['password_hash'])) {
-        return false;
-    }
-
-    // Zapisz minimum informacji w sesji
-    $_SESSION['user'] = [
-        'id'        => $user['id'],
-        'email'     => $user['email'],
-        'full_name' => $user['full_name'],
-        'role'      => $user['role'],
-    ];
-
-    return true;
+    $cached = $user;
+    return $user;
 }
 
-function logout_user(): void
-{
+/**
+ * Zaloguj użytkownika po ID.
+ */
+function login_user(int $userId): void {
+    session_regenerate_id(true);
+    $_SESSION['user_id'] = $userId;
+}
+
+/**
+ * Wylogowanie.
+ */
+function logout_user(): void {
     $_SESSION = [];
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
-        setcookie(
-            session_name(),
-            '',
-            time() - 42000,
-            $params["path"],
-            $params["domain"],
-            $params["secure"],
-            $params["httponly"]
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
         );
     }
     session_destroy();
 }
 
-function require_login(): void
-{
-    if (!is_logged_in()) {
+/**
+ * Wymaga zalogowania – w przeciwnym wypadku przekierowuje do logowania.
+ */
+function require_login(): void {
+    if (!current_user()) {
         header('Location: /login.php');
         exit;
     }
 }
 
-function require_role(string $role): void
-{
+/**
+ * Wymaga określonej roli (np. admin).
+ */
+function require_role(string $role): void {
     $user = current_user();
     if (!$user || $user['role'] !== $role) {
-        http_response_code(403);
-        echo 'Brak dostępu.';
+        header('HTTP/1.1 403 Forbidden');
+        echo "Brak uprawnień.";
         exit;
     }
 }
