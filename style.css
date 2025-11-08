@@ -1328,62 +1328,65 @@ footer {
 }
 
 /* === MAŁA ILUSTRACJA INFRA W „ŚRODOWISKO PRACY” === */
+/* Mini ilustracja infrastruktury – Środowisko pracy */
 .infra-illustration {
   position: relative;
-  margin: 0.8rem 0 1.2rem;
-  height: 70px;
+  max-width: 420px;
+  height: 60px;
+  margin: 1.75rem auto 1.5rem;
+  pointer-events: none;   /* żeby nie zachowywało się jak klikalne */
 }
 
-.infra-node {
-  position: absolute;
-  width: 60px;
-  height: 34px;
-  border-radius: 0.9rem;
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.55);
-}
-
-:root[data-theme="light"] .infra-node {
-  background: #ffffff;
-}
-
-.infra-node--left {
-  left: 0;
-  top: 18px;
-}
-
-.infra-node--center {
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
-
-.infra-node--right {
-  right: 0;
-  top: 18px;
-}
-
+/* Dwie linie (np. logi + metryki) */
 .infra-link {
   position: absolute;
+  left: 40px;
+  right: 40px;
   height: 2px;
-  background: linear-gradient(to right, #22c55e, #38bdf8);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #27ae60, #00a3ff);
   opacity: 0.9;
 }
 
 .infra-link--top {
-  left: 50%;
-  top: 24px;
-  width: 40%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translateY(-10px);
 }
 
 .infra-link--bottom {
-  left: 50%;
-  top: 42px;
-  width: 40%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translateY(10px);
 }
+
+/* Węzły – małe kółka zamiast „przycisków” */
+.infra-node {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--surface-elevated, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Lewy węzeł */
+.infra-node--left {
+  left: 10px;
+}
+
+/* Środkowy węzeł */
+.infra-node--center {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Prawy węzeł */
+.infra-node--right {
+  right: 10px;
+}
+
 
 /* === DELIKATNE ORGANICZNE TŁO POD SEKCJĄ „TECHNOLOGIE” === */
 #technologie {
