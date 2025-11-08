@@ -955,7 +955,7 @@ $currentUser = current_user();
             </div>
             <p class="contact-hint">
               <i class="fa-solid fa-circle-exclamation icon-left" aria-hidden="true"></i>
-              Tutaj możesz dodać swoje dane kontaktowe (e-mail, telefon, adres), jeśli chcesz je wyświetlać klientom.
+              Telefon: 123 456 789
             </p>
           </aside>
 

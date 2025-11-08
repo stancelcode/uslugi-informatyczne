@@ -11,7 +11,7 @@ $docs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // OFERTY / PODSTRONY PRZYPISANE DO KLIENTA
 $offersStmt = $pdo->prepare("
-  SELECT o.title, o.slug, oa.created_at
+  SELECT o.title, o.slug, o.external_url, oa.created_at
   FROM offer_access oa
   JOIN offers o ON o.id = oa.offer_id
   WHERE oa.user_id = :uid
@@ -96,9 +96,13 @@ $offers = $offersStmt->fetchAll(PDO::FETCH_ASSOC);
           <?php else: ?>
             <ul style="list-style:none;margin-top:0.8rem;padding-left:0;">
               <?php foreach ($offers as $off): ?>
+                <?php
+                  $internalLink = '/offer.php?slug=' . urlencode($off['slug']);
+                  $effectiveLink = !empty($off['external_url']) ? $off['external_url'] : $internalLink;
+                ?>
                 <li style="margin-bottom:0.6rem;border-bottom:1px solid rgba(148,163,184,0.3);padding-bottom:0.4rem;">
                   <strong>
-                    <a href="/offer.php?slug=<?= urlencode($off['slug']) ?>">
+                    <a href="<?= htmlspecialchars($effectiveLink, ENT_QUOTES, 'UTF-8'); ?>" target="_blank">
                       <?= htmlspecialchars($off['title'], ENT_QUOTES, 'UTF-8') ?>
                     </a>
                   </strong><br>
@@ -108,7 +112,14 @@ $offers = $offersStmt->fetchAll(PDO::FETCH_ASSOC);
                   </small><br>
                   <small>
                     Link bezpośredni:
-                    /offer.php?slug=<?= htmlspecialchars($off['slug'], ENT_QUOTES, 'UTF-8') ?>
+                    <a href="<?= htmlspecialchars($effectiveLink, ENT_QUOTES, 'UTF-8'); ?>" target="_blank">
+                      <?= htmlspecialchars($effectiveLink, ENT_QUOTES, 'UTF-8'); ?>
+                    </a>
+                    <?php if (!empty($off['external_url'])): ?>
+                      <em>(zewnętrzna strona)</em>
+                    <?php else: ?>
+                      <em>(strona w panelu klienta)</em>
+                    <?php endif; ?>
                   </small>
                 </li>
               <?php endforeach; ?>

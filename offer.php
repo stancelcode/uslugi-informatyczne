@@ -87,6 +87,12 @@ if (!$hasAccess) {
     <?php
     exit;
 }
+
+/* --- NOWOŚĆ: jeśli oferta ma zewnętrzny URL, przekieruj tam --- */
+if (!empty($offer['external_url'])) {
+    header('Location: ' . $offer['external_url']);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl" data-theme="dark">

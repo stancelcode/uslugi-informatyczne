@@ -16,22 +16,24 @@ $info   = [];
 
 /* --- Dodawanie nowej oferty --- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'create_offer') {
-    $title   = trim($_POST['title'] ?? '');
-    $slug    = trim($_POST['slug'] ?? '');
-    $content = trim($_POST['content'] ?? '');
+    $title        = trim($_POST['title'] ?? '');
+    $slug         = trim($_POST['slug'] ?? '');
+    $content      = trim($_POST['content'] ?? '');
+    $external_url = trim($_POST['external_url'] ?? '');
 
     if ($title === '' || $slug === '' || $content === '') {
         $errors[] = 'Uzupełnij tytuł, slug i treść oferty.';
     } else {
         try {
             $stmt = $pdo->prepare("
-                INSERT INTO offers (title, slug, content)
-                VALUES (:title, :slug, :content)
+                INSERT INTO offers (title, slug, content, external_url)
+                VALUES (:title, :slug, :content, :external_url)
             ");
             $stmt->execute([
-                'title'   => $title,
-                'slug'    => $slug,
-                'content' => $content,
+                'title'        => $title,
+                'slug'         => $slug,
+                'content'      => $content,
+                'external_url' => $external_url !== '' ? $external_url : null,
             ]);
             $info[] = 'Oferta została utworzona.';
         } catch (PDOException $e) {
@@ -98,6 +100,7 @@ if ($filterUserId > 0) {
                u.role,
                o.title,
                o.slug,
+               o.external_url,
                oa.created_at
         FROM offer_access oa
         JOIN users u  ON u.id = oa.user_id
@@ -115,6 +118,7 @@ if ($filterUserId > 0) {
                u.role,
                o.title,
                o.slug,
+               o.external_url,
                oa.created_at
         FROM offer_access oa
         JOIN users u  ON u.id = oa.user_id
@@ -218,6 +222,17 @@ if ($filterUserId > 0) {
             </div>
 
             <div class="field">
+              <label for="external_url">Zewnętrzny URL (opcjonalnie)</label>
+              <input
+                type="url"
+                id="external_url"
+                name="external_url"
+                placeholder="np. https://twoja-domena.pl/oferta-x"
+              >
+              <small>Jeśli podasz adres, klienci będą kierowani na ten URL zamiast na stronę w systemie.</small>
+            </div>
+
+            <div class="field">
               <label for="content">Treść (HTML lub tekst)</label>
               <textarea id="content" name="content" rows="8" required></textarea>
             </div>
@@ -314,12 +329,18 @@ if ($filterUserId > 0) {
                     <th style="text-align:left;padding:0.4rem;">Rola</th>
                     <th style="text-align:left;padding:0.4rem;">Oferta</th>
                     <th style="text-align:left;padding:0.4rem;">Slug</th>
+                    <th style="text-align:left;padding:0.4rem;">Link</th>
                     <th style="text-align:left;padding:0.4rem;">Data</th>
                     <th style="text-align:left;padding:0.4rem;">Akcje</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($accessList as $row): ?>
+                  <?php
+                    $effectiveLink = !empty($row['external_url'])
+                      ? $row['external_url']
+                      : '/offer.php?slug=' . $row['slug'];
+                  ?>
                   <tr>
                     <td style="padding:0.35rem 0.4rem;">
                       <?= htmlspecialchars(($row['full_name'] ?: $row['email']), ENT_QUOTES, 'UTF-8') ?><br>
@@ -328,6 +349,11 @@ if ($filterUserId > 0) {
                     <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['role']) ?></td>
                     <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['title']) ?></td>
                     <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['slug']) ?></td>
+                    <td style="padding:0.35rem 0.4rem;">
+                      <a href="<?= htmlspecialchars($effectiveLink, ENT_QUOTES, 'UTF-8') ?>" target="_blank">
+                        <?= htmlspecialchars($effectiveLink, ENT_QUOTES, 'UTF-8') ?>
+                      </a>
+                    </td>
                     <td style="padding:0.35rem 0.4rem;"><?= htmlspecialchars($row['created_at']) ?></td>
                     <td style="padding:0.35rem 0.4rem;">
                       <form method="post" style="display:inline;">

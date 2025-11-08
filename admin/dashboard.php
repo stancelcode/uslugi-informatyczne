@@ -188,25 +188,32 @@ $client_docs         = $docs_stmt->fetchAll();
     <span class="theme-icon">☀️</span>
   </button>
 
-  <header>
-    <div class="container nav">
-      <div class="logo">
-        <div class="logo-mark"></div>
-        <span>Panel admina</span>
-      </div>
-      <div class="nav-actions">
-        <span style="font-size:0.85rem;color:var(--text-muted);">
-          Zalogowany: <?php echo htmlspecialchars($user['full_name'], ENT_QUOTES, 'UTF-8'); ?>
-        </span>
-        <a href="/" class="btn btn-outline">
-          <i class="fa-solid fa-house icon-left"></i> Strona główna
-        </a>
-        <a href="/logout.php" class="btn btn-primary">
-          <i class="fa-solid fa-right-from-bracket icon-left"></i> Wyloguj
-        </a>
-      </div>
+<header>
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-mark"></div>
+      <span>Panel admina</span>
     </div>
-  </header>
+    <nav>
+      <ul>
+        <li><a href="/admin/dashboard.php">Dashboard</a></li>
+        <li><a href="/admin/offers.php">Oferty</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <span style="font-size:0.85rem;color:var(--text-muted);">
+        Zalogowany: <?php echo htmlspecialchars($user['full_name'], ENT_QUOTES, 'UTF-8'); ?>
+      </span>
+      <a href="/" class="btn btn-outline">
+        <i class="fa-solid fa-house icon-left"></i> Strona główna
+      </a>
+      <a href="/logout.php" class="btn btn-primary">
+        <i class="fa-solid fa-right-from-bracket icon-left"></i> Wyloguj
+      </a>
+    </div>
+  </div>
+</header>
+
 
   <main>
     <section>
