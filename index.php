@@ -62,6 +62,11 @@ $currentUser = current_user();
           <li><a href="#technologie">Technologie</a></li>
           <li><a href="#zespol">Zespół</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
+
+                    <?php if ($currentUser): ?>
+            <li><a href="/my_offers.php">Moje oferty</a></li>
+          <?php endif; ?>
+          
           <li><a href="/login.php">Logowanie</a></li>
         </ul>
       </nav>
